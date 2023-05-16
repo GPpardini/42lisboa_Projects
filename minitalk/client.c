@@ -6,11 +6,10 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:13:58 by gpardini          #+#    #+#             */
-/*   Updated: 2023/05/13 18:33:31 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/05/16 19:54:07 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "minitalk.h"
 
 void	bit_send(char c, int pid)
@@ -48,17 +47,17 @@ void	lenght_send(int c, int pid)
 void	signal_cut(int signal)
 {
 	if (signal == SIGUSR2)
-		write(1, "mensage received by the server\n",  31);
+		write(1, "mensage received by the server\n", 31);
 }
 
-int main (int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
-	int pid;
-	int i;
+	int					pid;
+	int					i;
+	struct sigaction	sig;
 
 	if (argc != 3)
-		return(0);
-	struct sigaction sig;
+		return (0);
 	sig.sa_sigaction = (void *)signal_cut;
 	sig.sa_flags = SA_SIGINFO;
 	pid = ft_atoi(argv[1]);
@@ -71,5 +70,5 @@ int main (int argc, char *argv[])
 		bit_send(argv[2][i], pid);
 		i++;
 	}
-	return(0);
+	return (0);
 }

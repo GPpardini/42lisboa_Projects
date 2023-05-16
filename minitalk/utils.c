@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 17:55:25 by gpardini          #+#    #+#             */
-/*   Updated: 2023/05/06 16:35:18 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/05/16 19:53:09 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,14 @@ char	*ft_itoa(int num)
 
 	i = 0;
 	n = num;
+	str = NULL;
 	while (num > 0)
 	{
 		num = num / 10;
 		i++;
 	}
-	if (!(str = (char*)malloc(sizeof(char) * (i + 1))))
-		return (0);
+	if (!str)
+		str = (char *)malloc(sizeof(char) * (i + 1));
 	str[i--] = '\0';
 	while (i >= 0)
 	{
