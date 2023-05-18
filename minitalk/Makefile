@@ -6,7 +6,7 @@
 #    By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/06 16:38:49 by gpardini          #+#    #+#              #
-#    Updated: 2023/05/16 20:18:06 by gpardini         ###   ########.fr        #
+#    Updated: 2023/05/18 18:45:09 by gpardini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,29 +16,27 @@ CLIENT_NAME		=	client
 
 CC				= 	cc
 
-CFLAGS			= 	-Wall -Wextra -Werror -g
+CFLAGS			= 	-Wall -Wextra -Werror  -g -fsanitize=address
 
 RM				= 	rm -f
 
-SRC_SERV		=	server.c utils.c
+OBJ_SERV		= 	server.o utils.o
 
-SRC_CLIENT		=	client.c utils.c
-
-OBJS			= 	client server bclient bserver
+OBJ_CLIENT		= 	client.o utils.o
 
 all: 		$(SERVER_NAME) $(CLIENT_NAME)
 
-$(SERVER_NAME):	$(SRC_SERV)
-			@$(CC) $(CFLAGS) $(SRC_SERV) -o $(SERVER_NAME)
+$(SERVER_NAME):	$(OBJ_SERV)
+			@$(CC) $(CFLAGS) $(OBJ_SERV) -o $(SERVER_NAME)
 
-$(CLIENT_NAME):	$(SRC_CLIENT)
-			@$(CC) $(CFLAGS) $(SRC_CLIENT) -o $(CLIENT_NAME)
+$(CLIENT_NAME):	$(OBJ_CLIENT)
+			@$(CC) $(CFLAGS) $(OBJ_CLIENT) -o $(CLIENT_NAME)
 
 clean:
-			@$(RM) $(OBJS)
+			@$(RM) $(OBJ_SERV) $(OBJ_CLIENT)
 
 fclean: clean
-			@$(RM) $(NAME)
+			@$(RM) $(SERVER_NAME) $(CLIENT_NAME)
 
 re: fclean all
 
