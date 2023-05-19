@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 19:18:05 by gpardini          #+#    #+#             */
-/*   Updated: 2023/05/19 18:31:15 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/05/19 18:31:21 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ typedef struct node
 } t_node;
 
 void    is_rep(t_node *stack_a);
-int	ft_strcmp(const char *str1, const char *str2);
 int	ft_isdigit(int a);
+int	ft_strcmp(const char *str1, const char *str2);
 char	*ft_strdup(const char *s);
 t_node*    start_stack_a(char *argv[]);
 void	add_new(t_node *head, int value);
