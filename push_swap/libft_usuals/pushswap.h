@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 19:18:05 by gpardini          #+#    #+#             */
-/*   Updated: 2023/05/19 18:31:24 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/05/22 15:57:42 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct node
 	struct node *next;
 } t_node;
 
-void    is_rep(t_node *stack_a);
+void	is_rep(int num, t_node *stack_a);
 int	ft_isdigit(int a);
 int	ft_strcmp(const char *str1, const char *str2);
 char	*ft_strdup(const char *s);
@@ -39,7 +39,7 @@ int	ft_atoi(const char *str);
 char	*ft_itoa(int n);
 int	m_str(char const *s, char **split, char c);
 void    check_rep(t_node *stack_a, int num);
-int    check_errors(char* num);
+int	check_errors(char* num, t_node *head);
 char	**ft_split(char const *s, char c);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 size_t	ft_strlen(const char *s);

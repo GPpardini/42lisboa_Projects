@@ -6,7 +6,7 @@
 #    By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/01 19:18:09 by gpardini          #+#    #+#              #
-#    Updated: 2023/05/19 18:07:00 by gpardini         ###   ########.fr        #
+#    Updated: 2023/05/22 17:01:35 by gpardini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ RM				= 	rm -f
 
 LIB				=	pushswap.h
 
-SRC				=	libft_usuals/*.c list_functions/*.c push_swap.c utils.c
+SRC				=	libft_usuals/*.c list_functions/*.c push_swap.c utils.c sorting.c
 
 OBJS			=	$(SRCS:.c=.o)
 
@@ -38,6 +38,10 @@ fclean: clean
 re: fclean all
 
 run: re
-			./push_swap "1 2 3 4 9 6 7 8 9"
+			./push_swap "1 2 3 4 5 6 7 8 9"
+run1: re
+			./push_swap "1 2 3 4 a 6 7 8 9"
+run3: re
+			./push_swap "3 1 2"
 
 .PHONY: 	all re clean fclean run

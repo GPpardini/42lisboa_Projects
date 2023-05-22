@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 18:30:20 by gpardini          #+#    #+#             */
-/*   Updated: 2023/05/18 19:08:22 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/05/22 17:05:51 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,5 @@ void	rev_rotate(t_node **head)
 	last->next = *head;
 	*head = p_last->next;
 	p_last->next = NULL;
+	write(1, "rra\n", 4);
 }
