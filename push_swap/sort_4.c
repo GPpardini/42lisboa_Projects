@@ -1,31 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rev_rotate.c                                       :+:      :+:    :+:   */
+/*   sort_4.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/18 18:30:20 by gpardini          #+#    #+#             */
-/*   Updated: 2023/05/22 17:05:51 by gpardini         ###   ########.fr       */
+/*   Created: 2023/05/23 19:45:19 by gpardini          #+#    #+#             */
+/*   Updated: 2023/05/23 19:53:53 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-void	rev_rotate(t_node **head)
+void	sort_4(void)
 {
-	t_node *last;
-	t_node *p_last;
+	int pos;
+	static int flag;
 
-	last = (*head)->next;
-	p_last = *head;
-	while (last->next != NULL)
+	is_sorted(get()->head_a);
+	printf("sort_5\n");
+	while (flag < 1)
 	{
-		p_last = p_last->next;
-		last = last->next;
+		pos = find_pos(flag);
+		if (pos <= 2)
+		{
+			while(get()->head_a->value != flag)
+				ra();
+			pb();
+			flag++;
+		}
+		else if(pos >= 3)
+		{
+			while(get()->head_a && get()->head_a->value != flag)
+			{
+				rra();
+				print_list(get()->head_a);
+			}
+			pb();
+			flag++;
+		}
 	}
-	last->next = *head;
-	*head = p_last->next;
-	p_last->next = NULL;
-	write(1, "rra\n", 4);
+	sort_3();
+	pa();
 }

@@ -6,11 +6,11 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 11:44:05 by gpardini          #+#    #+#             */
-/*   Updated: 2023/05/18 18:28:38 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/05/23 19:53:32 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "../pushswap.h"
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {

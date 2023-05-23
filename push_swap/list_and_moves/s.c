@@ -1,24 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   s.c                                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/18 18:06:04 by gpardini          #+#    #+#             */
-/*   Updated: 2023/05/18 20:29:12 by gpardini         ###   ########.fr       */
+/*   Created: 2023/05/18 18:30:55 by gpardini          #+#    #+#             */
+/*   Updated: 2023/05/23 20:17:54 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "../pushswap.h"
 
-// static void    push(t_node *src, t_node *dest)
-// {
-//     t_node temp;
-    
-//     if (!src)
-//         return ;
-//     temp->value = dest->value;
-//     dest->value = src->value;
-//     src->value = temp->value; 
-// }
+void	sa(void)
+{
+	t_node *temp;
+	
+	temp = get()->head_a;
+	get()->head_a = get()->head_a->next;
+	temp->next = get()->head_a->next;
+	get()->head_a->next = temp;
+	write(1, "sa\n", 3);
+}
+
+void	sb(void)
+{
+	t_node *temp;
+	
+	temp = get()->head_b;
+	get()->head_b = get()->head_b->next;
+	temp->next = get()->head_b->next;
+	get()->head_b->next = temp;
+	write(1, "sb\n", 3);
+}

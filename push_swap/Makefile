@@ -6,13 +6,13 @@
 #    By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/01 19:18:09 by gpardini          #+#    #+#              #
-#    Updated: 2023/05/22 17:01:35 by gpardini         ###   ########.fr        #
+#    Updated: 2023/05/23 20:09:59 by gpardini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 PROGRAM_NAME	= 	push_swap
 
-CC				= 	cc 
+CC				= 	cc
 
 CFLAGS			= 	-Wall -Wextra -Werror #-g -fsanitize=address
 
@@ -20,13 +20,13 @@ RM				= 	rm -f
 
 LIB				=	pushswap.h
 
-SRC				=	libft_usuals/*.c list_functions/*.c push_swap.c utils.c sorting.c
+SRC				=	libft_usuals/*.c list_and_moves/*.c *.c
 
-OBJS			=	$(SRCS:.c=.o)
+OBJS			=	$(SRC:.c=.o)
 
-all: 		$(PROGRAM_NAME)
+all: 			$(PROGRAM_NAME)
 
-$(PROGRAM_NAME):	$(OBJS)
+$(PROGRAM_NAME): $(SRC)
 			@$(CC) $(CFLAGS) $(SRC) -o $(PROGRAM_NAME)
 
 clean:
@@ -42,6 +42,6 @@ run: re
 run1: re
 			./push_swap "1 2 3 4 a 6 7 8 9"
 run3: re
-			./push_swap "3 1 2"
+			./push_swap "30 10 20"
 
 .PHONY: 	all re clean fclean run

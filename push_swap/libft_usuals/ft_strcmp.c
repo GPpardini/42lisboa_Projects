@@ -6,11 +6,11 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 14:29:27 by gpardini          #+#    #+#             */
-/*   Updated: 2023/05/19 18:10:36 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/05/23 19:53:32 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "../pushswap.h"
 
 int	ft_strcmp(const char *str1, const char *str2)
 {

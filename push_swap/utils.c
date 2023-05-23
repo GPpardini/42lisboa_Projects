@@ -1,26 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list_functions.c                                   :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 18:22:27 by gpardini          #+#    #+#             */
-/*   Updated: 2023/05/18 20:29:35 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/05/23 19:53:59 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
-
-t_node	*start_list(int value)
-{
-	t_node	*head;
-
-	head = (t_node *)malloc(sizeof(t_node));
-	head->value = value;
-	head->next = NULL;
-	return (head);
-}
 
 void	print_list(t_node *head)
 {
@@ -35,23 +25,66 @@ void	print_list(t_node *head)
 	printf("%d\n", (current->value));
 }
 
-void	add_new(t_node *head, int value)
-{
-	t_node *new;
 
-	new = (t_node*)malloc(sizeof(t_node));
-	if(!new)
-		return ;
-	while(head->next != 0)
+void	is_sorted(t_node* head)
+{
+	while (head->next != 0)
+	{
+		if (head->value > head->next->value)
+			return ;
 		head = head->next;
-	head->next = new;
-	new->value = value;
-	new->next = NULL;
+	}
+	exit(13);
 }
 
-// t_stack *stack_a(void)
-// {
-// 	static t_stack stack;
+int	num_wins(int num)
+{
+	t_node* c;
+	int		flag;
 
-// 	return(&stack)
-// }
+	c = get()->head_a;
+	flag = 0;
+	while (c->next != 0)
+	{
+		if (num > (c->value))
+			flag++;
+		c = c->next;
+	}
+	if (num > c->value)
+		flag++;
+	return(flag);
+}
+
+void	value_treat(void)
+{
+	t_node* current;
+	t_node* new;
+
+	current = get()->head_a;
+	new = start_list(num_wins(current->value));
+	current = current->next;
+	while ( current != NULL)
+	{
+		add_new(new, num_wins(current->value));
+		current = current->next;
+	}
+	free_list(get()->head_a);
+	get()->head_a = new;
+}
+
+int	find_pos(int num)
+{
+	t_node* c;
+	int flag;
+	
+	flag = 1;
+	c = get()->head_a;
+	while (c)
+	{
+		if (num == c->value)
+			return (flag);
+		c = c->next;
+		flag++;
+	}
+	return(num);
+}

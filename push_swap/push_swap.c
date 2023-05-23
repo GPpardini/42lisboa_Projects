@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 19:17:13 by gpardini          #+#    #+#             */
-/*   Updated: 2023/05/22 17:05:07 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/05/23 20:12:35 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,36 @@ t_info* get(void)
 	static t_info get;
 
 	return(&get);
+}
+
+void	is_rep(int num, t_node *stack_a)
+{
+	while (stack_a != NULL)
+	{
+		if (num == stack_a->value)
+			exit(42);
+		stack_a = stack_a->next;
+	}
+}
+
+int	check_errors(char* num, t_node *head)
+{
+	int i;
+	char* test;
+		
+	i = 0;
+	while (num[i])
+	{
+		if (!ft_isdigit(num[i]) || ((num[i] == '+' || num[i] == '-') && i != 0))
+		   exit(11);
+		i++;
+	}
+	test = ft_itoa(ft_atoi(num));
+	if (ft_strcmp(test, num) != 0)
+		exit(22);
+	free(test);
+	is_rep(ft_atoi(num), head);
+	return (ft_atoi(num));
 }
 
 t_node*	start_stack_a(char *argv[])
@@ -44,45 +74,27 @@ t_node*	start_stack_a(char *argv[])
 	return(head);
 }
 
-int	check_errors(char* num, t_node *head)
-{
-	int i;
-	char* test;
-		
-	i = 0;
-	while (num[i])
-	{
-		if (!ft_isdigit(num[i]) || ((num[i] == '+' || num[i] == '-') && i != 0))
-		   exit(11);
-		i++;
-	}
-	test = ft_itoa(ft_atoi(num));
-	if (ft_strcmp(test, num) != 0)
-		exit(22);
-	free(test);
-	is_rep(ft_atoi(num), head);
-	return (ft_atoi(num));
-}
-
-void	is_rep(int num, t_node *stack_a)
-{
-	while (stack_a != NULL)
-	{
-		if (num == stack_a->value)
-			exit(42);
-		stack_a = stack_a->next;
-	}
-}
-
 int main (int argc, char* argv[])
-{		
+{	int lenght;
 	if (argc < 2)
 		exit(0);
 	get()->head_a = start_stack_a(argv);
-	printf("lista antes do sort:\n");
+	printf("list:\n");
 	print_list(get()->head_a);
-	sort_3();
-	printf("lista depois do sort:\n");
+	value_treat();
+	printf("value treat:\n");
+	print_list(get()->head_a);
+	lenght = list_size(get()->head_a);
+	is_sorted(get()->head_a);
+	if (lenght == 2)
+		sa();
+	if (lenght == 3)
+		sort_3();
+	if (lenght == 4)
+		sort_4();
+	if (lenght == 5)
+		sort_5();
+	printf("lista arrumada:\n");
 	print_list(get()->head_a);
 	return (0);
 }

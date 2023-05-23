@@ -6,11 +6,11 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 21:58:40 by gpardini          #+#    #+#             */
-/*   Updated: 2023/05/19 17:30:39 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/05/23 19:53:32 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "../pushswap.h"
 
 int	ft_isdigit(int a)
 {
