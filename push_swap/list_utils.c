@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 17:58:43 by gpardini          #+#    #+#             */
-/*   Updated: 2023/05/24 18:40:55 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/05/24 20:30:35 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,19 @@ int	list_size(t_node *head)
 		current = current->next;
 	}
 	return (size);
+}
+
+void	free_matrix(char **matrix)
+{
+	int i;
+
+	i = 0;
+	while (matrix[i])
+	{
+		free(matrix[i]);
+		i++;
+	}
+	free(matrix);
 }
 
 void	print_list(t_node *head)

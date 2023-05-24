@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 19:18:05 by gpardini          #+#    #+#             */
-/*   Updated: 2023/05/24 19:08:50 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/05/24 20:30:30 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	value_treat(void);
 void	is_sorted(t_node *head);
 int		num_wins(int num);
 void	free_exit(int flag);
+void	free_matrix(char **matrix);
 void	print_list(t_node *head); //so para testes apagar depois;
 
 #endif

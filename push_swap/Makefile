@@ -6,7 +6,7 @@
 #    By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/01 19:18:09 by gpardini          #+#    #+#              #
-#    Updated: 2023/05/24 18:55:39 by gpardini         ###   ########.fr        #
+#    Updated: 2023/05/24 20:55:16 by gpardini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ PROGRAM_NAME	= 	push_swap
 
 CC				= 	cc
 
-CFLAGS			= 	-Wall -Wextra -Werror #-g -fsanitize=address
+CFLAGS			= 	-Wall -Wextra -Werror -g #-fsanitize=address
 
 RM				= 	rm -f
 
@@ -39,10 +39,4 @@ re: fclean all
 
 run: re
 			./push_swap "1 2 3 4 5 6 7 8 9"
-run1: re
-			./push_swap "1 2 3 4 a 6 7 8 9"
-run2: re
-			./push_swap 1123 2 3 4 5 6 9 8 999 741 312 71234 94 123 943 19 033
-run3: re
-			./push_swap 1123 2 3 4 5 6 9 8 999 741 312 71234 5
 .PHONY: 	all re clean fclean run

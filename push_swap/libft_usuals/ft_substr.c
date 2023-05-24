@@ -6,38 +6,32 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 11:16:44 by gpardini          #+#    #+#             */
-/*   Updated: 2023/05/23 19:53:32 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/05/24 20:27:46 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pushswap.h"
 
-typedef unsigned int	t_ui;
-
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*sub;
-	t_ui	i;
+	size_t	i;
+	size_t	j;
+	char	*str;
 
+	str = (char*)malloc(sizeof(*s) * (len + 1));
+	if (!str)
+		return (NULL);
 	i = 0;
-	if (!s)
-		return (0);
-	if ((start > ft_strlen(s) || \
-		(len > ft_strlen(s) && start > ft_strlen(s))))
+	j = 0;
+	while (s[i])
 	{
-		sub = malloc(1);
-		if (!sub)
-			return (0);
-		sub[0] = 0;
-		return (sub);
+		if (i >= start && j < len)
+		{
+			str[j] = s[i];
+			j++;
+		}
+		i++;
 	}
-	if (ft_strlen(s) < start)
-		len = 0;
-	if (ft_strlen(s + start) < len)
-		len = ft_strlen(s + start);
-	sub = malloc(sizeof(char) * (len + 1));
-	if (!sub)
-		return (0);
-	ft_strlcpy(sub, s + start, len + 1);
-	return (sub);
+	str[j] = '\0';
+	return (str);
 }
