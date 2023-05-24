@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 19:17:13 by gpardini          #+#    #+#             */
-/*   Updated: 2023/05/24 19:08:38 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/05/24 19:10:07 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	is_rep(int num, t_node *stack_a)
 	while (stack_a != NULL)
 	{
 		if (num == stack_a->value)
-			free_exit(1);;
+			free_exit(1);
 		stack_a = stack_a->next;
 	}
 }
