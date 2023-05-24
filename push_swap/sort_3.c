@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 16:08:46 by gpardini          #+#    #+#             */
-/*   Updated: 2023/05/24 15:50:18 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/05/24 18:45:15 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	sort_3(void)
 {
-	t_node* c;
+	t_node	*c;
 
 	is_sorted(get()->head_a);
 	c = get()->head_a;

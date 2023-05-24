@@ -6,16 +6,16 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 18:06:04 by gpardini          #+#    #+#             */
-/*   Updated: 2023/05/23 20:17:40 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/05/24 18:42:15 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pushswap.h"
 
-void    pa(void)
+void	pa(void)
 {
-	t_node* temp;
-	
+	t_node	*temp;
+
 	if (get()->head_b->next == NULL)
 	{
 		temp = get()->head_a;
@@ -33,11 +33,11 @@ void    pa(void)
 	write(1, "pa\n", 3);
 }
 
-void    pb(void)
+void	pb(void)
 {
-	t_node* temp;
-	
-	if(!get()->head_b)
+	t_node	*temp;
+
+	if (!get()->head_b)
 	{
 		get()->head_b = get()->head_a;
 		get()->head_a = get()->head_a->next;
@@ -52,4 +52,3 @@ void    pb(void)
 	}
 	write(1, "pb\n", 3);
 }
-

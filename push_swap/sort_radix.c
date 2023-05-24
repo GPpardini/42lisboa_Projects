@@ -6,16 +6,16 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 18:07:52 by gpardini          #+#    #+#             */
-/*   Updated: 2023/05/24 18:20:43 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/05/24 18:30:44 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-int		last_bit(int num)
+int	last_bit(int num)
 {
-	int pos;
-	int bit;
+	int	pos;
+	int	bit;
 
 	pos = 0;
 	bit = 0;
@@ -31,9 +31,9 @@ int		last_bit(int num)
 
 void	sort_radix(void)
 {
-	int round;
-	int size;
-	int bit;
+	int	round;
+	int	size;
+	int	bit;
 
 	round = last_bit(list_size(get()->head_a));
 	bit = 0;
@@ -49,7 +49,7 @@ void	sort_radix(void)
 				ra();
 			size--;
 		}
-		while(get()->head_b)
+		while (get()->head_b)
 			pa();
 		bit++;
 		round--;

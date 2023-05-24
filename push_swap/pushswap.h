@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 19:18:05 by gpardini          #+#    #+#             */
-/*   Updated: 2023/05/24 16:30:42 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/05/24 18:33:23 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,15 @@
 
 typedef struct node
 {
-	int value;
-	struct node *next;
-} t_node;
+	int			value;
+	struct node	*next;
+}	t_node;
 
 typedef struct info
 {
-	t_node* head_a;
-	t_node* head_b;
-} t_info;
+	t_node	*head_a;
+	t_node	*head_b;
+}	t_info;
 
 int		ft_atoi(const char *str);
 int		ft_isdigit(int a);
@@ -52,8 +52,8 @@ void	rb(void);
 void	rra(void);
 void	rrb(void);
 t_node	*start_stack_a(char *argv[]);
-t_info* get(void);
-int		check_errors(char* num, t_node *head);
+t_info	*get(void);
+int		check_errors(char *num, t_node*head);
 void	is_rep(int num, t_node *stack_a);
 void	sort_3(void);
 void	sort_4(void);
@@ -61,7 +61,7 @@ void	sort_5(void);
 void	sort_radix(void);
 int		find_pos(int num);
 void	value_treat(void);
-void	is_sorted(t_node* head);
+void	is_sorted(t_node *head);
 int		num_wins(int num);
 void	free_exit(void);
 void	print_list(t_node *head); //so para testes apagar depois;

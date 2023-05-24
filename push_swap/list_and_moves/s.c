@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 18:30:55 by gpardini          #+#    #+#             */
-/*   Updated: 2023/05/23 20:17:54 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/05/24 18:41:59 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	sa(void)
 {
-	t_node *temp;
-	
+	t_node	*temp;
+
 	temp = get()->head_a;
 	get()->head_a = get()->head_a->next;
 	temp->next = get()->head_a->next;
@@ -25,8 +25,8 @@ void	sa(void)
 
 void	sb(void)
 {
-	t_node *temp;
-	
+	t_node	*temp;
+
 	temp = get()->head_b;
 	get()->head_b = get()->head_b->next;
 	temp->next = get()->head_b->next;

@@ -6,24 +6,11 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 18:22:27 by gpardini          #+#    #+#             */
-/*   Updated: 2023/05/24 16:32:08 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/05/24 18:38:17 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
-
-void	print_list(t_node *head)
-{
-	t_node *current;
-
-	current = head;
-	while(current->next != 0)
-	{
-		printf("%d ", current->value);
-		current = current->next;
-	}
-	printf("%d\n", (current->value));
-}
 
 void	free_exit(void)
 {
@@ -33,7 +20,7 @@ void	free_exit(void)
 	exit(0);
 }
 
-void	is_sorted(t_node* head)
+void	is_sorted(t_node *head)
 {
 	while (head->next != 0)
 	{
@@ -47,7 +34,7 @@ void	is_sorted(t_node* head)
 
 int	num_wins(int num)
 {
-	t_node* c;
+	t_node	*c;
 	int		flag;
 
 	c = get()->head_a;
@@ -60,18 +47,18 @@ int	num_wins(int num)
 	}
 	if (num > c->value)
 		flag++;
-	return(flag);
+	return (flag);
 }
 
 void	value_treat(void)
 {
-	t_node* current;
-	t_node* new;
+	t_node	*current;
+	t_node	*new;
 
 	current = get()->head_a;
 	new = start_list(num_wins(current->value));
 	current = current->next;
-	while ( current != NULL)
+	while (current != NULL)
 	{
 		add_new(new, num_wins(current->value));
 		current = current->next;
@@ -82,8 +69,8 @@ void	value_treat(void)
 
 int	find_pos(int num)
 {
-	t_node* c;
-	int flag;
+	t_node	*c;
+	int		flag;
 
 	flag = 1;
 	c = get()->head_a;
@@ -94,5 +81,5 @@ int	find_pos(int num)
 		c = c->next;
 		flag++;
 	}
-	return(num);
+	return (num);
 }

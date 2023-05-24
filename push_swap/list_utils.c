@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 17:58:43 by gpardini          #+#    #+#             */
-/*   Updated: 2023/05/24 18:07:09 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/05/24 18:40:55 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,21 @@ t_node	*start_list(int value)
 
 void	add_new(t_node *head, int value)
 {
-	t_node *new;
+	t_node	*new;
 
-	new = (t_node*)malloc(sizeof(t_node));
-	if(!new)
+	new = (t_node *)malloc(sizeof(t_node));
+	if (!new)
 		return ;
-	while(head->next != 0)
+	while (head->next != 0)
 		head = head->next;
 	head->next = new;
 	new->value = value;
 	new->next = NULL;
 }
 
-void free_list(t_node *list)
+void	free_list(t_node *list)
 {
-	t_node* temp;
+	t_node	*temp;
 
 	while (list)
 	{
@@ -48,9 +48,9 @@ void free_list(t_node *list)
 	}
 }
 
-int		list_size(t_node *head)
+int	list_size(t_node *head)
 {
-	t_node* current;
+	t_node	*current;
 	int		size;
 
 	current = head;
@@ -61,4 +61,17 @@ int		list_size(t_node *head)
 		current = current->next;
 	}
 	return (size);
+}
+
+void	print_list(t_node *head)
+{
+	t_node	*current;
+
+	current = head;
+	while (current->next != 0)
+	{
+		printf("%d ", current->value);
+		current = current->next;
+	}
+	printf("%d\n", (current->value));
 }

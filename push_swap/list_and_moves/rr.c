@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 18:30:20 by gpardini          #+#    #+#             */
-/*   Updated: 2023/05/23 20:17:50 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/05/24 18:42:42 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	rra(void)
 {
-	t_node* last;
-	t_node* prev;
-	t_node* temp;
+	t_node	*last;
+	t_node	*prev;
+	t_node	*temp;
 
 	if (!get()->head_a)
 		return ;
@@ -35,9 +35,9 @@ void	rra(void)
 
 void	rrb(void)
 {
-	t_node* last;
-	t_node* prev;
-	t_node* temp;
+	t_node	*last;
+	t_node	*prev;
+	t_node	*temp;
 
 	if (!get()->head_b)
 		return ;
