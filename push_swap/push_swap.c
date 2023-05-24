@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 19:17:13 by gpardini          #+#    #+#             */
-/*   Updated: 2023/05/24 18:48:11 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/05/24 19:08:38 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ int	check_errors(char *num, t_node *head)
 	i = 0;
 	while (num[i])
 	{
-		if (!ft_isdigit(num[i]) || ((num[i] == '+' || num[i] == '-')) && i != 0)
-			free_exit(1);
+		if (!ft_isdigit(num[i]) || ((num[i] == '+' || num[i] == '-') && i != 0))
+			exit(13);
 		i++;
 	}
 	test = ft_itoa(ft_atoi(num));
 	if (ft_strcmp(test, num) != 0)
-		free_exit(1);
+		exit(42);
 	free(test);
 	is_rep(ft_atoi(num), head);
 	return (ft_atoi(num));
@@ -85,7 +85,6 @@ int	main(int argc, char *argv[])
 	printf("lista value_treat:\n");
 	print_list(get()->head_a);
 	lenght = list_size(get()->head_a);
-	printf("lenght: %d\n", lenght);
 	is_sorted(get()->head_a);
 	if (lenght == 2)
 		sa();
@@ -97,7 +96,6 @@ int	main(int argc, char *argv[])
 		sort_5();
 	if (lenght > 5)
 		sort_radix();
-	printf("lista sorted:\n");
-	print_list(get()->head_a);
+	is_sorted(get()->head_a);
 	return (0);
 }

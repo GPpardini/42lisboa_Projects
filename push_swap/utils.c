@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 18:22:27 by gpardini          #+#    #+#             */
-/*   Updated: 2023/05/24 18:47:21 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/05/24 18:58:55 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	free_exit(int flag)
 	free_list(get()->head_b);
 	if (flag == 1)
 		write(1, "ERROR\n", 6);
+	else
+		write(1, "sorted\n", 7);
 	exit(0);
 }
 
