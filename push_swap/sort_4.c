@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 19:45:19 by gpardini          #+#    #+#             */
-/*   Updated: 2023/05/23 19:53:53 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/05/24 15:50:08 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	sort_4(void)
 	static int flag;
 
 	is_sorted(get()->head_a);
-	printf("sort_5\n");
 	while (flag < 1)
 	{
 		pos = find_pos(flag);

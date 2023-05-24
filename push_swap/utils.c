@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 18:22:27 by gpardini          #+#    #+#             */
-/*   Updated: 2023/05/23 19:53:59 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/05/24 16:32:08 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,13 @@ void	print_list(t_node *head)
 	printf("%d\n", (current->value));
 }
 
+void	free_exit(void)
+{
+	free_list(get()->head_a);
+	free_list(get()->head_b);
+	write(1, "ERROR\n", 6);
+	exit(0);
+}
 
 void	is_sorted(t_node* head)
 {
@@ -34,7 +41,8 @@ void	is_sorted(t_node* head)
 			return ;
 		head = head->next;
 	}
-	exit(13);
+	print_list(get()->head_a);
+	free_exit();
 }
 
 int	num_wins(int num)
@@ -76,7 +84,7 @@ int	find_pos(int num)
 {
 	t_node* c;
 	int flag;
-	
+
 	flag = 1;
 	c = get()->head_a;
 	while (c)

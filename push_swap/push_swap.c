@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 19:17:13 by gpardini          #+#    #+#             */
-/*   Updated: 2023/05/23 20:12:35 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/05/24 18:07:23 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,17 @@ int	check_errors(char* num, t_node *head)
 {
 	int i;
 	char* test;
-		
+
 	i = 0;
 	while (num[i])
 	{
 		if (!ft_isdigit(num[i]) || ((num[i] == '+' || num[i] == '-') && i != 0))
-		   exit(11);
+		   free_exit();
 		i++;
 	}
 	test = ft_itoa(ft_atoi(num));
 	if (ft_strcmp(test, num) != 0)
-		exit(22);
+		free_exit();
 	free(test);
 	is_rep(ft_atoi(num), head);
 	return (ft_atoi(num));
@@ -55,13 +55,13 @@ t_node*	start_stack_a(char *argv[])
 	char**  num;
 	int	 i;
 	int	 y;
-		
+
 	head = NULL;
 	i = 0;
 	y = 0;
 	while (argv[++i] != 0)
 	{
-		num = ft_split(argv[i], ' ');  
+		num = ft_split(argv[i], ' ');
 		if (num[y] != NULL && head == NULL)
 			head = start_list(check_errors(num[y++], head));
 		while  (num[y] != NULL)
@@ -75,16 +75,16 @@ t_node*	start_stack_a(char *argv[])
 }
 
 int main (int argc, char* argv[])
-{	int lenght;
+{
+	int lenght;
 	if (argc < 2)
-		exit(0);
+		free_exit();
 	get()->head_a = start_stack_a(argv);
-	printf("list:\n");
-	print_list(get()->head_a);
 	value_treat();
-	printf("value treat:\n");
+	printf("lista value_treat:\n");
 	print_list(get()->head_a);
 	lenght = list_size(get()->head_a);
+	printf("lenght: %d\n", lenght);
 	is_sorted(get()->head_a);
 	if (lenght == 2)
 		sa();
@@ -94,7 +94,9 @@ int main (int argc, char* argv[])
 		sort_4();
 	if (lenght == 5)
 		sort_5();
-	printf("lista arrumada:\n");
+	if (lenght > 5)
+		sort_radix();
+	printf("lista sorted:\n");
 	print_list(get()->head_a);
 	return (0);
 }

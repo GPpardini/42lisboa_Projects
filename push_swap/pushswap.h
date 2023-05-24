@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 19:18:05 by gpardini          #+#    #+#             */
-/*   Updated: 2023/05/23 20:01:21 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/05/24 16:30:42 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ t_node	*start_list(int value);
 void	add_new(t_node *head, int value);
 void	free_list(t_node *list);
 int		list_size(t_node *head);
-//move functions;
 void	sa(void);
 void	sb(void);
 void	pa(void);
@@ -53,16 +52,18 @@ void	rb(void);
 void	rra(void);
 void	rrb(void);
 t_node	*start_stack_a(char *argv[]);
+t_info* get(void);
 int		check_errors(char* num, t_node *head);
 void	is_rep(int num, t_node *stack_a);
-t_info* get(void);
 void	sort_3(void);
 void	sort_4(void);
 void	sort_5(void);
+void	sort_radix(void);
 int		find_pos(int num);
 void	value_treat(void);
 void	is_sorted(t_node* head);
 int		num_wins(int num);
+void	free_exit(void);
 void	print_list(t_node *head); //so para testes apagar depois;
 
 #endif
