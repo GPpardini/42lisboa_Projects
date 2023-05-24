@@ -6,17 +6,18 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 18:22:27 by gpardini          #+#    #+#             */
-/*   Updated: 2023/05/24 18:38:17 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/05/24 18:47:21 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-void	free_exit(void)
+void	free_exit(int flag)
 {
 	free_list(get()->head_a);
 	free_list(get()->head_b);
-	write(1, "ERROR\n", 6);
+	if (flag == 1)
+		write(1, "ERROR\n", 6);
 	exit(0);
 }
 
@@ -29,7 +30,7 @@ void	is_sorted(t_node *head)
 		head = head->next;
 	}
 	print_list(get()->head_a);
-	free_exit();
+	free_exit(0);
 }
 
 int	num_wins(int num)

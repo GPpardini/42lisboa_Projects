@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 19:17:13 by gpardini          #+#    #+#             */
-/*   Updated: 2023/05/24 18:35:55 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/05/24 18:48:11 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	is_rep(int num, t_node *stack_a)
 	while (stack_a != NULL)
 	{
 		if (num == stack_a->value)
-			exit(13);
+			free_exit(1);;
 		stack_a = stack_a->next;
 	}
 }
@@ -38,12 +38,12 @@ int	check_errors(char *num, t_node *head)
 	while (num[i])
 	{
 		if (!ft_isdigit(num[i]) || ((num[i] == '+' || num[i] == '-')) && i != 0)
-			exit(42);
+			free_exit(1);
 		i++;
 	}
 	test = ft_itoa(ft_atoi(num));
 	if (ft_strcmp(test, num) != 0)
-		exit(69);
+		free_exit(1);
 	free(test);
 	is_rep(ft_atoi(num), head);
 	return (ft_atoi(num));
@@ -79,7 +79,7 @@ int	main(int argc, char *argv[])
 	int	lenght;
 
 	if (argc < 2)
-		free_exit();
+		free_exit(1);
 	get()->head_a = start_stack_a(argv);
 	value_treat();
 	printf("lista value_treat:\n");
