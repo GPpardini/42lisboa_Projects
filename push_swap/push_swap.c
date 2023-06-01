@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 19:17:13 by gpardini          #+#    #+#             */
-/*   Updated: 2023/06/01 21:06:19 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/06/01 21:32:15 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,11 +102,9 @@ int	main(int argc, char *argv[])
 	int	lenght;
 
 	if (argc < 2)
-		free_exit(1);
+		return (0);
 	get()->head_a = start_stack_a(argv);
 	value_treat();
-	printf("lista value_treat:\n");
-	print_list(get()->head_a);
 	lenght = list_size(get()->head_a);
 	is_sorted(get()->head_a);
 	if (lenght == 2)
