@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 19:17:13 by gpardini          #+#    #+#             */
-/*   Updated: 2023/05/24 20:58:23 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/06/01 14:27:38 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,32 @@ void	is_rep(int num, t_node *stack_a)
 	}
 }
 
+void	is_int(char *num)
+{
+	char	*max = "2147483647";
+	char	*pmax = "+2147483647";
+	char	*min = "-2147483648";
+
+	int len;
+	int flag;
+
+	len = ft_strlen(num);
+	if ((len > 11) || (len == 11 && (*num != '-' || *num != '+')))
+		free_exit(1);
+	if ((len == 10 && (*num == '-' || *num == '+')) || len < 10)
+		return ;
+	if (len == 11)
+	{
+		if (*num == '+')
+			flag = ft_strcmp(num, pmax);
+		if (*num == '-')
+			flag = ft_strcmp(num, min);
+	}
+	if (len == 10)
+		ft_strcmp(num, max);
+	if (flag <= 0)
+}
+
 int	check_errors(char *num, t_node *head)
 {
 	int		i;
@@ -41,9 +67,6 @@ int	check_errors(char *num, t_node *head)
 			free_exit(1);
 		i++;
 	}
-	test = ft_itoa(ft_atoi(num));
-	if (ft_strcmp(test, num) != 0)
-		free_exit(1);
 	free(test);
 	is_rep(ft_atoi(num), head);
 	return (ft_atoi(num));
