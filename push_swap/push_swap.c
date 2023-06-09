@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 19:17:13 by gpardini          #+#    #+#             */
-/*   Updated: 2023/06/01 21:32:15 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/06/09 19:05:23 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,13 @@ t_info	*get(void)
 	return (&get);
 }
 
-void	is_rep(int num, t_node *stack_a)
-{
-	while (stack_a != NULL)
-	{
-		if (num == stack_a->value)
-			free_exit(1);
-		stack_a = stack_a->next;
-	}
-}
-
 void	is_int(char *num)
 {
-	char	*max = "2147483647";
-	char	*pmax = "+2147483647";
-	char	*min = "-2147483648";
+	static char	*max = "2147483647";
+	static char	*pmax = "+2147483647";
+	static char	*min = "-2147483648";
+	int			len;
 
-	int len;
 	len = ft_strlen(num);
 	if ((len > 11) || (len == 11 && (*num != '-' && *num != '+')))
 		free_exit(1);

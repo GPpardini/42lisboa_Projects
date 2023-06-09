@@ -1,37 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   is_rep.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/24 11:16:44 by gpardini          #+#    #+#             */
-/*   Updated: 2023/06/09 19:07:55 by gpardini         ###   ########.fr       */
+/*   Created: 2023/06/09 19:05:56 by gpardini          #+#    #+#             */
+/*   Updated: 2023/06/09 19:06:06 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pushswap.h"
+#include "pushswap.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+void	is_rep(int num, t_node *stack_a)
 {
-	size_t	i;
-	size_t	j;
-	char	*str;
-
-	str = (char *)malloc(sizeof(*s) * (len + 1));
-	if (!str)
-		return (NULL);
-	i = 0;
-	j = 0;
-	while (s[i])
+	while (stack_a != NULL)
 	{
-		if (i >= start && j < len)
-		{
-			str[j] = s[i];
-			j++;
-		}
-		i++;
+		if (num == stack_a->value)
+			free_exit(1);
+		stack_a = stack_a->next;
 	}
-	str[j] = '\0';
-	return (str);
 }

@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 17:58:43 by gpardini          #+#    #+#             */
-/*   Updated: 2023/05/24 20:30:35 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/06/01 21:36:40 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	list_size(t_node *head)
 
 void	free_matrix(char **matrix)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (matrix[i])
@@ -74,17 +74,4 @@ void	free_matrix(char **matrix)
 		i++;
 	}
 	free(matrix);
-}
-
-void	print_list(t_node *head)
-{
-	t_node	*current;
-
-	current = head;
-	while (current->next != 0)
-	{
-		printf("%d ", current->value);
-		current = current->next;
-	}
-	printf("%d\n", (current->value));
 }
