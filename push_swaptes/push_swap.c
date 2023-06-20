@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 19:17:13 by gpardini          #+#    #+#             */
-/*   Updated: 2023/06/13 17:02:29 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/06/01 21:35:25 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,16 @@ t_info	*get(void)
 	static t_info	get;
 
 	return (&get);
+}
+
+void	is_rep(int num, t_node *stack_a)
+{
+	while (stack_a != NULL)
+	{
+		if (num == stack_a->value)
+			free_exit(1);
+		stack_a = stack_a->next;
+	}
 }
 
 void	is_int(char *num)
@@ -61,28 +71,30 @@ int	check_errors(char *num, t_node *head)
 	return (ft_atoi(num));
 }
 
-void	start_stack_a(char *argv[])
+t_node	*start_stack_a(char *argv[])
 {
+	t_node	*head;
 	char	**num;
 	int		i;
 	int		y;
 
+	head = NULL;
 	i = 0;
 	y = 0;
 	while (argv[++i] != 0)
 	{
 		num = ft_split(argv[i], ' ');
-		get()->matrix = num;
-		if (num[y] != NULL && get()->head_a == NULL)
-			get()->head_a = start_list(check_errors(num[y++], get()->head_a));
+		if (num[y] != NULL && head == NULL)
+			head = start_list(check_errors(num[y++], head));
 		while (num[y] != NULL)
 		{
-			if (get()->head_a && num[y])
-				add_new(get()->head_a, check_errors(num[y++], get()->head_a));
+			if (head && num[y])
+				add_new(head, check_errors(num[y++], head));
 		}
 		y = 0;
 		free_matrix(num);
 	}
+	return (head);
 }
 
 int	main(int argc, char *argv[])
@@ -91,7 +103,7 @@ int	main(int argc, char *argv[])
 
 	if (argc < 2)
 		return (0);
-	start_stack_a(argv);
+	get()->head_a = start_stack_a(argv);
 	value_treat();
 	lenght = list_size(get()->head_a);
 	is_sorted(get()->head_a);

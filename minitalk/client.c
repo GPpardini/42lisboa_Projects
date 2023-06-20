@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:13:58 by gpardini          #+#    #+#             */
-/*   Updated: 2023/05/16 19:54:07 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/06/13 16:43:29 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	bit_send(char c, int pid)
 	bit = 0;
 	while (bit < 8)
 	{
-		if (c & (0x01 << bit))
+		if (c & (0x001 << bit))
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
@@ -28,6 +28,12 @@ void	bit_send(char c, int pid)
 	}
 }
 
+2 | 1 
+
+0000 0100
+
+1000 1000
+0001 0000
 void	lenght_send(int c, int pid)
 {
 	int		bit;

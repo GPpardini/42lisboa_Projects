@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 19:18:05 by gpardini          #+#    #+#             */
-/*   Updated: 2023/06/13 16:59:16 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/05/24 20:30:30 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ typedef struct info
 {
 	t_node	*head_a;
 	t_node	*head_b;
-	char **matrix;
 }	t_info;
 
 int		ft_atoi(const char *str);
@@ -52,7 +51,7 @@ void	ra(void);
 void	rb(void);
 void	rra(void);
 void	rrb(void);
-void	start_stack_a(char *argv[]);
+t_node	*start_stack_a(char *argv[]);
 t_info	*get(void);
 int		check_errors(char *num, t_node*head);
 void	is_rep(int num, t_node *stack_a);

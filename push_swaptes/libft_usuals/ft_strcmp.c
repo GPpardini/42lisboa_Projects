@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/15 17:11:16 by gpardini          #+#    #+#             */
-/*   Updated: 2023/06/20 19:44:02 by gpardini         ###   ########.fr       */
+/*   Created: 2022/11/24 14:29:27 by gpardini          #+#    #+#             */
+/*   Updated: 2023/05/23 19:53:32 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../pushswap.h"
 
-static t_data* get(void)
+int	ft_strcmp(const char *str1, const char *str2)
 {
-	static t_data* data;
-	return (data);
-}
+	size_t	i;
 
-int main (int argc, char* argv[])
-{
-	(void)argv;
-	get()->map_fd = 0;
-	if (argc != 2)
-		return(1);
-	return(0);
+	i = 0;
+	while (str1[i] == str2[i] && str1[i] != '\0')
+		i++;
+	return ((unsigned char)(str1[i]) - (unsigned char)(str2[i]));
 }

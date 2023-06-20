@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/15 17:11:16 by gpardini          #+#    #+#             */
-/*   Updated: 2023/06/20 19:44:02 by gpardini         ###   ########.fr       */
+/*   Created: 2023/06/20 17:20:26 by gpardini          #+#    #+#             */
+/*   Updated: 2023/06/20 18:45:13 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "get_next_line.h"
+#include "../so_long.h"
 
-static t_data* get(void)
+char	*get_next_line(int fd)
 {
-	static t_data* data;
-	return (data);
-}
+	static char		buffer[BUFFER_SIZE + 1];
+	char			*line;
+	int				i;
 
-int main (int argc, char* argv[])
-{
-	(void)argv;
-	get()->map_fd = 0;
-	if (argc != 2)
-		return(1);
-	return(0);
+	if (read(fd, 0, 0) < 0)
+	{
+		i = 0;
+		while (i < BUFFER_SIZE)
+			buffer[i++] = 0;
+		return (NULL);
+	}
+	if (!buffer[0])
+		buffer[read(fd, buffer, BUFFER_SIZE)] = 0;
+	line = seek_line(fd, buffer);
+	over_read(buffer);
+	return (line);
 }

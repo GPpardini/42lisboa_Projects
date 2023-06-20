@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   s.c                                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/15 17:11:16 by gpardini          #+#    #+#             */
-/*   Updated: 2023/06/20 19:44:02 by gpardini         ###   ########.fr       */
+/*   Created: 2023/05/18 18:30:55 by gpardini          #+#    #+#             */
+/*   Updated: 2023/05/24 19:09:07 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../pushswap.h"
 
-static t_data* get(void)
+void	sa(void)
 {
-	static t_data* data;
-	return (data);
+	t_node	*temp;
+
+	temp = get()->head_a;
+	get()->head_a = get()->head_a->next;
+	temp->next = get()->head_a->next;
+	get()->head_a->next = temp;
+	write(1, "sa\n", 3);
 }
 
-int main (int argc, char* argv[])
+void	sb(void)
 {
-	(void)argv;
-	get()->map_fd = 0;
-	if (argc != 2)
-		return(1);
-	return(0);
+	t_node	*temp;
+
+	temp = get()->head_b;
+	get()->head_b = get()->head_b->next;
+	temp->next = get()->head_b->next;
+	get()->head_b->next = temp;
+	write(1, "sb\n", 3);
 }

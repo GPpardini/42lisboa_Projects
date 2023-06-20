@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/15 17:11:16 by gpardini          #+#    #+#             */
-/*   Updated: 2023/06/20 19:44:02 by gpardini         ###   ########.fr       */
+/*   Created: 2023/06/20 17:20:43 by gpardini          #+#    #+#             */
+/*   Updated: 2023/06/20 17:21:04 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-static t_data* get(void)
-{
-	static t_data* data;
-	return (data);
-}
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 100
+# endif
 
-int main (int argc, char* argv[])
-{
-	(void)argv;
-	get()->map_fd = 0;
-	if (argc != 2)
-		return(1);
-	return(0);
-}
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <fcntl.h>
+
+char	*get_next_line(int fd);
+char	*seek_line(int fd, char *buffer);
+char	*bl_strjoin(char *string, char *add);
+void	over_read(char *buffer);
+
+#endif

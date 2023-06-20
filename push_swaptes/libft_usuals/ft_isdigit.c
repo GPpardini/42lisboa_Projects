@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/15 17:11:16 by gpardini          #+#    #+#             */
-/*   Updated: 2023/06/20 19:44:02 by gpardini         ###   ########.fr       */
+/*   Created: 2022/10/25 21:58:40 by gpardini          #+#    #+#             */
+/*   Updated: 2023/05/23 19:53:32 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../pushswap.h"
 
-static t_data* get(void)
+int	ft_isdigit(int a)
 {
-	static t_data* data;
-	return (data);
-}
-
-int main (int argc, char* argv[])
-{
-	(void)argv;
-	get()->map_fd = 0;
-	if (argc != 2)
-		return(1);
-	return(0);
+	if (a >= '0' && a <= '9')
+		return (1);
+	return (0);
 }

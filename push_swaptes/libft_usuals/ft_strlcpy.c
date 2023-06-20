@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/15 17:11:16 by gpardini          #+#    #+#             */
-/*   Updated: 2023/06/20 19:44:02 by gpardini         ###   ########.fr       */
+/*   Created: 2022/11/24 11:44:05 by gpardini          #+#    #+#             */
+/*   Updated: 2023/05/23 19:53:32 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../pushswap.h"
 
-static t_data* get(void)
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	static t_data* data;
-	return (data);
-}
+	size_t	i;
+	size_t	leng;
 
-int main (int argc, char* argv[])
-{
-	(void)argv;
-	get()->map_fd = 0;
-	if (argc != 2)
-		return(1);
-	return(0);
+	i = 0;
+	leng = ft_strlen(src);
+	if (!dst || !src)
+		return (0);
+	if (size != 0)
+	{
+		while (src[i] != '\0' && i < size - 1)
+		{
+			dst[i] = src[i];
+			i++;
+		}
+		dst[i] = '\0';
+	}
+	return (leng);
 }

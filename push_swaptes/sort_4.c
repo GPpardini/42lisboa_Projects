@@ -1,28 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   sort_4.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/15 17:11:16 by gpardini          #+#    #+#             */
-/*   Updated: 2023/06/20 19:44:02 by gpardini         ###   ########.fr       */
+/*   Created: 2023/05/23 19:45:19 by gpardini          #+#    #+#             */
+/*   Updated: 2023/05/24 18:29:19 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "pushswap.h"
 
-static t_data* get(void)
+void	sort_4(void)
 {
-	static t_data* data;
-	return (data);
-}
+	int			pos;
+	static int	flag;
 
-int main (int argc, char* argv[])
-{
-	(void)argv;
-	get()->map_fd = 0;
-	if (argc != 2)
-		return(1);
-	return(0);
+	while (flag < 1)
+	{
+		pos = find_pos(flag);
+		if (pos <= 2)
+		{
+			while (get()->head_a->value != flag)
+				ra();
+			pb();
+			flag++;
+		}
+		else if (pos >= 3)
+		{
+			while (get()->head_a && get()->head_a->value != flag)
+				rra();
+			pb();
+			flag++;
+		}
+	}
+	sort_3();
+	pa();
 }
