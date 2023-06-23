@@ -6,23 +6,34 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 17:11:16 by gpardini          #+#    #+#             */
-/*   Updated: 2023/06/20 19:44:02 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/06/23 20:47:26 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static t_data* get(void)
+t_data	*get(void)
 {
-	static t_data* data;
-	return (data);
+	static t_data	data;
+	return (&data);
+}
+
+void get_map(void)
+{
+	int fd;
+	fd = get()->game.fd;
+	get()->map.map[0] = (char *)malloc(sizeof(char) * 10);
+	get()->map.map[0] = "123456789";
+	get()->map.map[0][9] = '\0';
 }
 
 int main (int argc, char* argv[])
 {
-	(void)argv;
-	get()->map_fd = 0;
-	if (argc != 2)
-		return(1);
+	(void)argc;
+	
+	get()->game.fd = open(argv[1], O_RDONLY);
+	printf("debug\n");
+	get_map();
+	printf("%s\n", get()->map.map[0]);
 	return(0);
 }
