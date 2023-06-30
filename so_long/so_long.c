@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 17:11:16 by gpardini          #+#    #+#             */
-/*   Updated: 2023/06/23 20:47:26 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/06/27 15:37:10 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,84 @@ t_data	*get(void)
 	return (&data);
 }
 
-void get_map(void)
+void	map_size_y(int fd)
 {
-	int fd;
-	fd = get()->game.fd;
-	get()->map.map[0] = (char *)malloc(sizeof(char) * 10);
-	get()->map.map[0] = "123456789";
-	get()->map.map[0][9] = '\0';
+	int i;
+
+	i = 0;
+	while(get_next_line(fd) != 0)
+		i++;
+	get()->map_y = i;
+}
+
+int	str_len(char* str)
+{
+	int i;
+	i = 0;
+	while(str[i])
+		i++;
+	return(i);
+}
+
+void	map_size_x(int fd)
+{
+	int i;
+	int len;
+	char *str;
+
+	str = NULL;
+	len = 1;
+	i = 0;
+	while(i < get()->map_y)
+	{
+		printf("test\n");
+		str = get_next_line(fd);
+		if (i > 0 && (str_len(str) != len))
+			write(1, "error\n", 6);
+		len = str_len(str);
+		i++;
+	}
+	get()->map_x = len - 1;
+}
+
+void	map_start(int fd)
+{
+	int i;
+	i = get()->map_y;
+	get()->map = (char **)malloc(sizeof(char *) * (i + 1));
+	get()->map[i] = NULL;
+	i = 0;
+	while(i < get()->map_y)
+	{
+		get()->map[i] = (char *)malloc(sizeof(char) * get()->map_x + 1);
+		if (!get()->map[i])
+			write(1, "error\n", 6);
+		get()->map[i] = get_next_line(fd);
+		get()->map[get()->map_x] = 0;
+		i++;
+	}
 }
 
 int main (int argc, char* argv[])
 {
 	(void)argc;
-	
-	get()->game.fd = open(argv[1], O_RDONLY);
-	printf("debug\n");
-	get_map();
-	printf("%s\n", get()->map.map[0]);
+
+	map_size_y(open(argv[1], O_RDONLY));
+	printf("get->map_y = %d\n", get()->map_y);
+	map_size_x(open(argv[1], O_RDONLY));
+	printf("get->map_x = %d\n", get()->map_x);
+	map_start(open(argv[1], O_RDONLY));
+	int i = 0;
+	while(i < get()->map_y)
+	{
+		printf("%s", get()->map[i]);
+		i++;
+	}
+	i = 0;
+	while(get()->map[i])
+	{
+		free(get()->map[i]);
+		i++;
+	}
 	return(0);
 }

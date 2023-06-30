@@ -6,7 +6,7 @@
 #    By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/15 19:53:58 by nfilipe-          #+#    #+#              #
-#    Updated: 2023/06/23 20:14:48 by gpardini         ###   ########.fr        #
+#    Updated: 2023/06/26 16:50:13 by gpardini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,12 +39,10 @@ ${NAME}: $(OBJ)
 clean:
 	$(MAKE) clean -C ./libft
 	@rm -rf $(OBJ)
-	@echo "$(RED) [Deleting] object files deleted.$(BOLD)"
 
 fclean: clean
 	$(MAKE) fclean -C ./libft
 	@rm -rf $(NAME) $(OBJ)
-	@echo "$(RED) [Deleting] .a deleted.$(BOLD)"
 
 re: fclean all
 

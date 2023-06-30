@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jede-ara <jede-ara@student.42.fr>          +#+  +:+       +#+         #
+#    By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/11 11:04:16 by jede-ara          #+#    #+#              #
-#    Updated: 2023/02/06 17:13:09 by jede-ara         ###   ########.fr        #
+#    Updated: 2023/06/26 16:49:37 by gpardini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,19 +19,19 @@ SRC =			ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c \
 					ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c get_next_line.c get_next_line_utils.c \
 					ft_putchar.c ft_putstr.c ft_printf.c ft_print_hex.c ft_print_pointer.c \
 					ft_print_unsig.c ft_putnbr.c
-					
+
 SRC_BONUS =		ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c \
 					ft_lstclear.c ft_lstiter.c ft_lstmap.c
-			
+
 
 NAME = libft.a
 HDRS = libft.h
-CC = cc 
+CC = cc
 FLAGS = -Wall -Werror -Wextra
 OBJS = $(SRC:.c=.o)
 BONUS_OBJS = $(OBJS) $(SRC_BONUS:.c=.o)
 
-# ==================================================================================== 
+# ====================================================================================
 # COLORS
 # ====================================================================================
 
@@ -44,7 +44,6 @@ all: $(NAME)
 
 %.o:%.c
 	@cc -Wall -Wextra -Werror -o $@ -c $<
-	@echo "$(WHITE)[OK] Build completed$(BOLD)"
 
 bonus: $(BONUS_OBJS)
 	@$(CC) $(SRC) $(SRC_BONUS) $(FLAGS)
@@ -58,11 +57,9 @@ $(NAME): $(OBJS)
 clean:
 	@/bin/rm -f $(BONUS_OBJS)
 	@/bin/rm -f $(NAME)
-	@echo "$(RED) [Deleting] Object files deleted.$(BOLD)"
 
 fclean: clean
-	@/bin/rm -f $(NAME) 
-	@echo "$(RED) [Deleting] Libft.a deleted.$(BOLD)"
+	@/bin/rm -f $(NAME)
 
 re: fclean all
 
