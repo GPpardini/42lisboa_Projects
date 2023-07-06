@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jede-ara <jede-ara@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 12:56:09 by jede-ara          #+#    #+#             */
-/*   Updated: 2022/11/11 12:56:48 by jede-ara         ###   ########.fr       */
+/*   Updated: 2023/07/05 17:59:22 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 /*
 ***************************************************************************
 				HEADERS
-*/	
+*/
 # include <unistd.h>
 # include <stdlib.h>
 # include <stddef.h>
@@ -97,14 +97,14 @@ t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 /*
 ***********************************************************************************
-				GET NEXT LINE 
+				GET NEXT LINE
 */
-char	*ft_read(int fd, char *src);
+
+void	over_read(char *buffer);
 char	*get_next_line(int fd);
-char	*ft_chr(char *s1, int c);
-char	*ft_join(char *s, char *buff);
-char	*ft_get_line(char *c);
-char	*ft_new_line(char *s);
+char	*bl_strjoin(char *line, char *add);
+char	*seek_line(int fd, char *buffer);
+int	found_breakline(char *string);
 
 /*
 **************************************************************************************
