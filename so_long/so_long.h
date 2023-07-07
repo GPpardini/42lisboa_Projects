@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 17:11:24 by gpardini          #+#    #+#             */
-/*   Updated: 2023/07/07 21:28:59 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/07/07 22:49:44 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,10 @@ typedef struct s_point
 typedef struct s_album
 {
 	t_image	back;
+	t_image	wall;
+	t_image	player;
+	t_image	exit;
+	t_image	collectable;
 } t_album;
 
 typedef struct s_data

@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 17:11:16 by gpardini          #+#    #+#             */
-/*   Updated: 2023/07/07 21:33:45 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/07/07 23:16:11 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,13 +112,29 @@ void	map_start(int fd)
 
 void	map_print(void)
 {
-	int i = 0;
+	int i;
+	int	j;
+
+	i = 0;
 	while(i < get()->map_y)
 	{
-		printf("%s\n", get()->map[i]);
+		j = 0;
+		while (j < get()->map_x)
+		{
+			if (get()->map[i][j] == 'P')
+				mlx_put_image_to_window(get()->mlx, get()->mlx_win, img()->player.img, j * 32, i * 32);
+			else if (get()->map[i][j] == 'e')
+				mlx_put_image_to_window(get()->mlx, get()->mlx_win, img()->exit.img, j * 32, i * 32);
+			else if (get()->map[i][j] == 'c')
+				mlx_put_image_to_window(get()->mlx, get()->mlx_win, img()->collectable.img, j * 32, i * 32);
+			else if (get()->map[i][j] == '-')
+				mlx_put_image_to_window(get()->mlx, get()->mlx_win, img()->back.img, j * 32, i * 32);
+			else if (get()->map[i][j] == '1')
+				mlx_put_image_to_window(get()->mlx, get()->mlx_win, img()->wall.img, j * 32, i * 32);
+			j++;
+		}
 		i++;
 	}
-	printf("\n");
 }
 
 int	map_check_walls(char **map)
@@ -357,14 +373,13 @@ int	key_manager(int keycode)
 	return(0);
 }
 
-void	map_render(void)
-{
-
-}
-
 void	image_create(void)
 {
-	img()->back.img = mlx_xpm_file_to_image(get()->mlx, "images/back", &img()->back.width, &img()->back.height);
+	img()->back.img = mlx_xpm_file_to_image(get()->mlx, "images/background.xpm", &img()->back.width, &img()->back.height);
+	img()->wall.img = mlx_xpm_file_to_image(get()->mlx, "images/wall.xpm", &img()->back.width, &img()->back.height);
+	img()->collectable.img = mlx_xpm_file_to_image(get()->mlx, "images/collectable.xpm", &img()->back.width, &img()->back.height);
+	img()->player.img = mlx_xpm_file_to_image(get()->mlx, "images/player.xpm", &img()->back.width, &img()->back.height);
+	img()->exit.img = mlx_xpm_file_to_image(get()->mlx, "images/exit.xpm", &img()->back.width, &img()->back.height);
 	//img()->back.addr = mlx_get_data_addr(&img()->back.img,
 	//&img()->back.bits_per_pixel, &img()->back.line_length, &img()->back.endian);
 }
@@ -375,15 +390,16 @@ int main (int argc, char* argv[])
 	map_size_y(open(argv[1], O_RDONLY));
 	map_size_x(open(argv[1], O_RDONLY));
 	map_start(open(argv[1], O_RDONLY));
-	map_print();
 	map_check();
 
 	get()->mlx = mlx_init();
-	get()->mlx_win = mlx_new_window(get()->mlx, 900, 700, "MyGame");
+	get()->mlx_win = mlx_new_window(get()->mlx, get()->map_x * 32, get()->map_y * 32, "MyGame");
 	image_create();
-	mlx_key_hook(get()->mlx_win, key_manager, get());
-	mlx_loop(get()->mlx);
+	map_print();
 
+	mlx_key_hook(get()->mlx_win, key_manager, get());
+	mlx_hook(get()->mlx_win, 17,1l<<17, (void *)close_win, get());
+	mlx_loop(get()->mlx);
 	map_free();
 	return(0);
 }
