@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 17:11:16 by gpardini          #+#    #+#             */
-/*   Updated: 2023/07/07 16:50:52 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/07/07 16:55:09 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -268,8 +268,23 @@ void	move_left(void)
 	x = get()->player.x;
 	if((get()->player.x > 1) && get()->map[get()->player.y][x - 1] != '1')
 	{
-		get()->map[get()->player.y][x - 1] = 	'P';
-		get()->map[get()->player.y][x] = 	'-';
+		if (get()->game_e_flag == 1)
+		{
+			get()->map[get()->player.y][x] = 'e';
+			get()->game_e_flag = 0;
+		}
+		else
+			get()->map[get()->player.y][x] = '-';
+		if (get()->map[get()->player.y][x - 1] == 'e')
+		{
+			if (get()->game_c == 0)
+				close_win();
+			else
+				get()->game_e_flag = 1;
+		}
+		if (get()->map[get()->player.y][x - 1] == 'c')
+			get()->game_c--;
+		get()->map[get()->player.y][x - 1] = 'P';
 		get()->player.x--;
 		map_print();
 	}
@@ -281,8 +296,23 @@ void	move_right(void)
 	x = get()->player.x;
 	if((get()->player.x < get()->map_x) && get()->map[get()->player.y][x + 1] != '1')
 	{
-		get()->map[get()->player.y][x + 1] = 	'P';
-		get()->map[get()->player.y][x] = 	'-';
+		if (get()->game_e_flag == 1)
+		{
+			get()->map[get()->player.y][x] = 'e';
+			get()->game_e_flag = 0;
+		}
+		else
+			get()->map[get()->player.y][x] = '-';
+		if (get()->map[get()->player.y][x + 1] == 'e')
+		{
+			if (get()->game_c == 0)
+				close_win();
+			else
+				get()->game_e_flag = 1;
+		}
+		if (get()->map[get()->player.y][x + 1] == 'c')
+			get()->game_c--;
+		get()->map[get()->player.y][x + 1] = 'P';
 		get()->player.x++;
 		map_print();
 	}
