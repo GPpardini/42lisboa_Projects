@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 17:11:16 by gpardini          #+#    #+#             */
-/*   Updated: 2023/07/07 16:35:53 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/07/07 16:50:52 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,10 +210,25 @@ void	move_up(void)
 {
 	int y;
 	y = get()->player.y;
-	if((get()->player.y > (int)1) && get()->map[y - 1][get()->player.x] != '1')
+	if(get()->player.y > 1 && get()->map[y - 1][get()->player.x] != '1')
 	{
+		if (get()->game_e_flag == 1)
+		{
+			get()->map[y][get()->player.x] = 'e';
+			get()->game_e_flag = 0;
+		}
+		else
+			get()->map[y][get()->player.x] = '-';
+		if (get()->map[y - 1][get()->player.x] == 'e')
+		{
+			if (get()->game_c == 0)
+				close_win();
+			else
+				get()->game_e_flag = 1;
+		}
+		if (get()->map[y - 1][get()->player.x] == 'c')
+			get()->game_c--;
 		get()->map[y - 1][get()->player.x] = 'P';
-		get()->map[y][get()->player.x] = '-';
 		get()->player.y--;
 		map_print();
 	}
@@ -221,13 +236,27 @@ void	move_up(void)
 
 void	move_down(void)
 {
-	//printf("enter move_down\n");
 	int y;
 	y = get()->player.y;
 	if((get()->player.y < get()->map_y) && get()->map[y + 1][get()->player.x] != '1')
 	{
+		if (get()->game_e_flag == 1)
+		{
+			get()->map[y][get()->player.x] = 'e';
+			get()->game_e_flag = 0;
+		}
+		else
+			get()->map[y][get()->player.x] = '-';
+		if (get()->map[y + 1][get()->player.x] == 'e')
+		{
+			if (get()->game_c == 0)
+				close_win();
+			else
+				get()->game_e_flag = 1;
+		}
+		if (get()->map[y + 1][get()->player.x] == 'c')
+			get()->game_c--;
 		get()->map[y + 1][get()->player.x] = 'P';
-		get()->map[y][get()->player.x] = '-';
 		get()->player.y++;
 		map_print();
 	}

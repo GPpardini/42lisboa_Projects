@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 17:11:24 by gpardini          #+#    #+#             */
-/*   Updated: 2023/07/07 14:11:57 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/07/07 16:41:17 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_data
 	int		map_e;
 	int		game_c;
 	int		game_e;
+	int		game_e_flag;
 	void	*mlx;
 	void	*mlx_win;
 	t_point	player;
