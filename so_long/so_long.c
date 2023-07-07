@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 17:11:16 by gpardini          #+#    #+#             */
-/*   Updated: 2023/07/07 13:05:09 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/07/07 13:13:45 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,12 +157,14 @@ void	flood(char **map, t_point size, t_point cur)
 	flood(map, size, (t_point){cur.x, cur.y + 1});
 }
 
-void	map_check_flood(char **map)
+int	map_check_flood(char **map)
 {
 	flood(map, (t_point){get()->map_x, get()->map_y}, get()->player);
 
 	if (!(get()->game_c == get()->map_c && get()->game_e == 1))
-		printf("map does not have a possible trail\n");
+		return(0);
+	else
+		return(1);
 }
 
 void	map_check(void)
@@ -171,20 +173,24 @@ void	map_check(void)
 		printf("map not surrounded by walls\n");
 	if (!map_check_pce(get()->map))
 		printf("map does not have a PCE proportion\n");
-	map_check_flood(get()->map);
-
+	if (!map_check_flood(get()->map))
+		printf("map does not have a possible trail\n");
 }
 
 int main (int argc, char* argv[])
 {
 	(void)argc;
 	map_size_y(open(argv[1], O_RDONLY));
-	printf("map_y:%d\n\n", get()->map_y);
+	//printf("map_y:%d\n\n", get()->map_y);
 	map_size_x(open(argv[1], O_RDONLY));
-	printf("map_x:%d\n\n", get()->map_x);
+	//printf("map_x:%d\n\n", get()->map_x);
 	map_start(open(argv[1], O_RDONLY));
 	map_print();
 	map_check();
+
+	get()->mlx = mlx_init();
+	get()->mlx_win = mlx_new_window(get()->mlx, 900, 700, "MyGame");
+	mlx_loop(get()->mlx);
 
 	int i = 0;
 	while(get()->map[i])
