@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 17:11:24 by gpardini          #+#    #+#             */
-/*   Updated: 2023/07/07 13:45:34 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/07/07 14:11:57 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,6 @@
 # include <stdlib.h>
 # include <stdbool.h>
 
-typedef struct s_point
-{
-	int x;
-	int y;
-}	t_point;
-
 typedef struct	s_image
 {
 	void	*img;
@@ -34,6 +28,17 @@ typedef struct	s_image
 	int		line_length;
 	int		endian;
 }	t_image;
+
+typedef struct s_point
+{
+	int x;
+	int y;
+}	t_point;
+
+typedef struct s_album
+{
+	t_image	back;
+} t_album;
 
 typedef struct s_data
 {
@@ -49,7 +54,6 @@ typedef struct s_data
 	void	*mlx;
 	void	*mlx_win;
 	t_point	player;
-	s_image	image1;
 }	t_data;
 
 

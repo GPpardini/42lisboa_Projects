@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 17:11:16 by gpardini          #+#    #+#             */
-/*   Updated: 2023/07/07 13:13:45 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/07/07 15:37:43 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,12 @@ t_data	*get(void)
 {
 	static t_data	data;
 	return (&data);
+}
+
+t_album	*img(void)
+{
+	static t_album	album;
+	return (&album);
 }
 
 void	map_size_y(int fd)
@@ -177,6 +183,62 @@ void	map_check(void)
 		printf("map does not have a possible trail\n");
 }
 
+void	my_mlx_pixel_put(t_image *data, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	*(unsigned int*)dst = color;
+}
+
+
+void	close_win(void)
+{
+	mlx_destroy_window(get()->mlx, get()->mlx_win);
+}
+
+void	move_up(void)
+{
+	int y;
+	y = get()->player.y;
+	if((get()->player.y > (int)1) && get()->map[y - 1][get()->player.x] != '1')
+	{
+		get()->map[y - 1][get()->player.x] = 'P';
+		get()->map[y][get()->player.x] = 'P';
+		get()->player.y--;
+		map_print();
+	}
+}
+
+void	move_down(void)
+{
+	int y;
+	y = get()->player.y;
+	if((get()->player.y < get()->map_y) && get()->map[y + 1][get()->player.x] != '1')
+	{
+		get()->map[y + 1][get()->player.x] = 'P';
+		get()->map[y][get()->player.x] = 'P';
+		get()->player.y++;
+		map_print();
+	}
+}
+
+int	key_manager(int keycode, t_data get)
+{
+	if(get.map[0])
+	{
+		if (keycode == 0xff1b)
+			close_win();
+		if (keycode == 0xff52) //up
+			move_up();
+		if (keycode == 0xff54) //down
+			move_down();
+		//if (keycode == 0xff53) //right
+		//if (keycode == 0xff51)
+	}
+	return(0);
+}
+
 int main (int argc, char* argv[])
 {
 	(void)argc;
@@ -190,13 +252,19 @@ int main (int argc, char* argv[])
 
 	get()->mlx = mlx_init();
 	get()->mlx_win = mlx_new_window(get()->mlx, 900, 700, "MyGame");
+
+	//img()->back.img = mlx_new_image(get()->mlx, 1920, 1080);
+	//img()->back.addr = mlx_get_data_addr(&img()->back.img,
+	//&img()->back.bits_per_pixel, &img()->back.line_length, &img()->back.endian);
+	//my_mlx_pixel_put(&img()->back, 5, 5, 0x00FF0000);
+	mlx_hook(get()->mlx_win, 2, 1L<<0, key_manager, get());
 	mlx_loop(get()->mlx);
 
-	int i = 0;
-	while(get()->map[i])
-	{
-		free(get()->map[i]);
-		i++;
-	}
+	// int i = 0;
+	// while(get()->map[i])
+	// {
+	// 	free(get()->map[i]);
+	// 	i++;
+	// }
 	return(0);
 }
