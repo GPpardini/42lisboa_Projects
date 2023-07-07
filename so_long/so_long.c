@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 17:11:16 by gpardini          #+#    #+#             */
-/*   Updated: 2023/07/07 15:55:56 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/07/07 16:35:53 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,16 +146,24 @@ int	map_check_pce(char **map)
 void	flood(char **map, t_point size, t_point cur)
 {
 	if (cur.y < 0 || cur.y >= size.y || cur.x < 0 || cur.x >= size.x
-		|| map[cur.y][cur.x] == '1' || map[cur.y][cur.x] == 'X')
+		|| map[cur.y][cur.x] == '1' || map[cur.y][cur.x] == 'X'
+		|| map[cur.y][cur.x] == 'e' ||  map[cur.y][cur.x] == 'c' ||  map[cur.y][cur.x] == '-')
 		return;
 
 	if (map[cur.y][cur.x] == 'C')
+	{
+		map[cur.y][cur.x] = 'c';
 		get()->game_c++;
+	}
 	if (map[cur.y][cur.x] == 'E')
+	{
+		map[cur.y][cur.x] = 'e';
 		get()->game_e++;
-	//printf("game_c = (%d) || game_e = (%d)\n\n", get()->game_c, get()->game_e);
+	}
+	printf("game_c = (%d) || game_e = (%d)\n\n", get()->game_c, get()->game_e);
 	//printf("map before = (%d)\n", map[cur.y][cur.x]);
-	map[cur.y][cur.x] = 'X';
+	if (map[cur.y][cur.x] == '0')
+		map[cur.y][cur.x] = '-';
 	//printf("map after = (%d)\n", map[cur.y][cur.x]);
 	flood(map, size, (t_point){cur.x - 1, cur.y});
 	flood(map, size, (t_point){cur.x + 1, cur.y});
@@ -205,7 +213,7 @@ void	move_up(void)
 	if((get()->player.y > (int)1) && get()->map[y - 1][get()->player.x] != '1')
 	{
 		get()->map[y - 1][get()->player.x] = 'P';
-		get()->map[y][get()->player.x] = 'X';
+		get()->map[y][get()->player.x] = '-';
 		get()->player.y--;
 		map_print();
 	}
@@ -219,7 +227,7 @@ void	move_down(void)
 	if((get()->player.y < get()->map_y) && get()->map[y + 1][get()->player.x] != '1')
 	{
 		get()->map[y + 1][get()->player.x] = 'P';
-		get()->map[y][get()->player.x] = 'X';
+		get()->map[y][get()->player.x] = '-';
 		get()->player.y++;
 		map_print();
 	}
@@ -232,7 +240,7 @@ void	move_left(void)
 	if((get()->player.x > 1) && get()->map[get()->player.y][x - 1] != '1')
 	{
 		get()->map[get()->player.y][x - 1] = 	'P';
-		get()->map[get()->player.y][x] = 	'X';
+		get()->map[get()->player.y][x] = 	'-';
 		get()->player.x--;
 		map_print();
 	}
@@ -245,7 +253,7 @@ void	move_right(void)
 	if((get()->player.x < get()->map_x) && get()->map[get()->player.y][x + 1] != '1')
 	{
 		get()->map[get()->player.y][x + 1] = 	'P';
-		get()->map[get()->player.y][x] = 	'X';
+		get()->map[get()->player.y][x] = 	'-';
 		get()->player.x++;
 		map_print();
 	}
