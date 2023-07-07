@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 17:11:16 by gpardini          #+#    #+#             */
-/*   Updated: 2023/07/07 15:37:43 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/07/07 15:47:19 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,6 +212,7 @@ void	move_up(void)
 
 void	move_down(void)
 {
+	printf("enter move_down\n");
 	int y;
 	y = get()->player.y;
 	if((get()->player.y < get()->map_y) && get()->map[y + 1][get()->player.x] != '1')
@@ -223,19 +224,18 @@ void	move_down(void)
 	}
 }
 
-int	key_manager(int keycode, t_data get)
+int	key_manager(int keycode)
 {
-	if(get.map[0])
-	{
-		if (keycode == 0xff1b)
-			close_win();
-		if (keycode == 0xff52) //up
-			move_up();
-		if (keycode == 0xff54) //down
-			move_down();
-		//if (keycode == 0xff53) //right
-		//if (keycode == 0xff51)
-	}
+	printf("enter key_manager\n");
+	printf("enter strange if statement\n");
+	if (keycode == 0xff1b)
+		close_win();
+	if (keycode == 0xff52) //up
+		move_up();
+	if (keycode == 0xff54) //down
+		move_down();
+	//if (keycode == 0xff53) //right
+	//if (keycode == 0xff51)
 	return(0);
 }
 
@@ -257,7 +257,7 @@ int main (int argc, char* argv[])
 	//img()->back.addr = mlx_get_data_addr(&img()->back.img,
 	//&img()->back.bits_per_pixel, &img()->back.line_length, &img()->back.endian);
 	//my_mlx_pixel_put(&img()->back, 5, 5, 0x00FF0000);
-	mlx_hook(get()->mlx_win, 2, 1L<<0, key_manager, get());
+	mlx_key_hook(get()->mlx_win, key_manager, get());
 	mlx_loop(get()->mlx);
 
 	// int i = 0;
