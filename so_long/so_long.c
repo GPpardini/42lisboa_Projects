@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 17:11:16 by gpardini          #+#    #+#             */
-/*   Updated: 2023/07/06 15:57:49 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/07/07 13:05:09 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,14 +140,17 @@ int	map_check_pce(char **map)
 void	flood(char **map, t_point size, t_point cur)
 {
 	if (cur.y < 0 || cur.y >= size.y || cur.x < 0 || cur.x >= size.x
-		|| map[cur.y][cur.x] == 1 || map[cur.y][cur.x] == 'X')
+		|| map[cur.y][cur.x] == '1' || map[cur.y][cur.x] == 'X')
 		return;
 
 	if (map[cur.y][cur.x] == 'C')
 		get()->game_c++;
 	if (map[cur.y][cur.x] == 'E')
 		get()->game_e++;
+	//printf("game_c = (%d) || game_e = (%d)\n\n", get()->game_c, get()->game_e);
+	//printf("map before = (%d)\n", map[cur.y][cur.x]);
 	map[cur.y][cur.x] = 'X';
+	//printf("map after = (%d)\n", map[cur.y][cur.x]);
 	flood(map, size, (t_point){cur.x - 1, cur.y});
 	flood(map, size, (t_point){cur.x + 1, cur.y});
 	flood(map, size, (t_point){cur.x, cur.y - 1});
