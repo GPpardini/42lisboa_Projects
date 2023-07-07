@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 17:11:16 by gpardini          #+#    #+#             */
-/*   Updated: 2023/07/07 15:47:19 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/07/07 15:55:56 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,6 +195,7 @@ void	my_mlx_pixel_put(t_image *data, int x, int y, int color)
 void	close_win(void)
 {
 	mlx_destroy_window(get()->mlx, get()->mlx_win);
+	mlx_destroy_display(get()->mlx); //segfault;
 }
 
 void	move_up(void)
@@ -204,7 +205,7 @@ void	move_up(void)
 	if((get()->player.y > (int)1) && get()->map[y - 1][get()->player.x] != '1')
 	{
 		get()->map[y - 1][get()->player.x] = 'P';
-		get()->map[y][get()->player.x] = 'P';
+		get()->map[y][get()->player.x] = 'X';
 		get()->player.y--;
 		map_print();
 	}
@@ -212,30 +213,57 @@ void	move_up(void)
 
 void	move_down(void)
 {
-	printf("enter move_down\n");
+	//printf("enter move_down\n");
 	int y;
 	y = get()->player.y;
 	if((get()->player.y < get()->map_y) && get()->map[y + 1][get()->player.x] != '1')
 	{
 		get()->map[y + 1][get()->player.x] = 'P';
-		get()->map[y][get()->player.x] = 'P';
+		get()->map[y][get()->player.x] = 'X';
 		get()->player.y++;
+		map_print();
+	}
+}
+
+void	move_left(void)
+{
+	int x;
+	x = get()->player.x;
+	if((get()->player.x > 1) && get()->map[get()->player.y][x - 1] != '1')
+	{
+		get()->map[get()->player.y][x - 1] = 	'P';
+		get()->map[get()->player.y][x] = 	'X';
+		get()->player.x--;
+		map_print();
+	}
+}
+
+void	move_right(void)
+{
+	int x;
+	x = get()->player.x;
+	if((get()->player.x < get()->map_x) && get()->map[get()->player.y][x + 1] != '1')
+	{
+		get()->map[get()->player.y][x + 1] = 	'P';
+		get()->map[get()->player.y][x] = 	'X';
+		get()->player.x++;
 		map_print();
 	}
 }
 
 int	key_manager(int keycode)
 {
-	printf("enter key_manager\n");
-	printf("enter strange if statement\n");
+	//printf("enter key_manager\n");
 	if (keycode == 0xff1b)
 		close_win();
 	if (keycode == 0xff52) //up
 		move_up();
 	if (keycode == 0xff54) //down
 		move_down();
-	//if (keycode == 0xff53) //right
-	//if (keycode == 0xff51)
+	if (keycode == 0xff53) //right
+		move_right();
+	if (keycode == 0xff51)
+		move_left();
 	return(0);
 }
 
