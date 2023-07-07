@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 17:11:16 by gpardini          #+#    #+#             */
-/*   Updated: 2023/07/07 20:36:47 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/07/07 21:33:45 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,11 @@ void	map_free(void)
 
 void	close_win(void)
 {
-	mlx_destroy_window(get()->mlx, get()->mlx_win);
 	map_free();
+	mlx_destroy_window(get()->mlx, get()->mlx_win);
+	mlx_destroy_display(get()->mlx);
+	mlx_loop_end(get()->mlx);
 	free(get()->mlx);
-	free(get()->mlx_win);
 	exit(0);
 }
 
@@ -343,7 +344,6 @@ void	move_right(void)
 
 int	key_manager(int keycode)
 {
-	//printf("enter key_manager\n");
 	if (keycode == 0xff1b)
 		close_win();
 	if (keycode == 0xff52) //up
@@ -357,26 +357,30 @@ int	key_manager(int keycode)
 	return(0);
 }
 
+void	map_render(void)
+{
+
+}
+
+void	image_create(void)
+{
+	img()->back.img = mlx_xpm_file_to_image(get()->mlx, "images/back", &img()->back.width, &img()->back.height);
+	//img()->back.addr = mlx_get_data_addr(&img()->back.img,
+	//&img()->back.bits_per_pixel, &img()->back.line_length, &img()->back.endian);
+}
 
 int main (int argc, char* argv[])
 {
 	(void)argc;
 	map_size_y(open(argv[1], O_RDONLY));
-	//printf("map_y:%d\n\n", get()->map_y);
 	map_size_x(open(argv[1], O_RDONLY));
-	//printf("map_x:%d\n\n", get()->map_x);
 	map_start(open(argv[1], O_RDONLY));
 	map_print();
 	map_check();
 
 	get()->mlx = mlx_init();
 	get()->mlx_win = mlx_new_window(get()->mlx, 900, 700, "MyGame");
-
-	//img()->back.img = mlx_new_image(get()->mlx, 1920, 1080);
-	//img()->back.addr = mlx_get_data_addr(&img()->back.img,
-	//&img()->back.bits_per_pixel, &img()->back.line_length, &img()->back.endian);
-	//my_mlx_pixel_put(&img()->back, 5, 5, 0x00FF0000);
-
+	image_create();
 	mlx_key_hook(get()->mlx_win, key_manager, get());
 	mlx_loop(get()->mlx);
 
