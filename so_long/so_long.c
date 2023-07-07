@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 17:11:16 by gpardini          #+#    #+#             */
-/*   Updated: 2023/07/07 16:55:09 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/07/07 20:36:47 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,41 @@ t_album	*img(void)
 	return (&album);
 }
 
+void	map_free(void)
+{
+	int i = 0;
+	while(get()->map[i])
+	{
+		free(get()->map[i]);
+		i++;
+	}
+	free(get()->map);
+}
+
+void	close_win(void)
+{
+	mlx_destroy_window(get()->mlx, get()->mlx_win);
+	map_free();
+	free(get()->mlx);
+	free(get()->mlx_win);
+	exit(0);
+}
+
 void	map_size_y(int fd)
 {
 	int i;
+	char *temp;
 
 	i = 0;
-	while(get_next_line(fd) != 0)
+	temp = NULL;
+	while(1)
+	{
+		temp = get_next_line(fd);
+		if (temp == NULL)
+			break;
+		free(temp);
 		i++;
+	}
 	get()->map_y = i;
 }
 
@@ -58,6 +86,7 @@ void	map_size_x(int fd)
 		if (i > 0 && (str_len(str) != len))
 			write(1, "error\n", 6);
 		len = str_len(str);
+		free(str);
 		i++;
 	}
 	get()->map_x = len - 1;
@@ -72,10 +101,9 @@ void	map_start(int fd)
 	i = 0;
 	while(i < get()->map_y)
 	{
-		get()->map[i] = (char *)malloc(sizeof(char) * get()->map_x + 1);
+		get()->map[i] = get_next_line(fd);
 		if (!get()->map[i])
 			write(1, "error\n", 6);
-		get()->map[i] = get_next_line(fd);
 		get()->map[i][get()->map_x] = 0;
 		i++;
 	}
@@ -160,7 +188,7 @@ void	flood(char **map, t_point size, t_point cur)
 		map[cur.y][cur.x] = 'e';
 		get()->game_e++;
 	}
-	printf("game_c = (%d) || game_e = (%d)\n\n", get()->game_c, get()->game_e);
+	//printf("game_c = (%d) || game_e = (%d)\n\n", get()->game_c, get()->game_e);
 	//printf("map before = (%d)\n", map[cur.y][cur.x]);
 	if (map[cur.y][cur.x] == '0')
 		map[cur.y][cur.x] = '-';
@@ -200,11 +228,6 @@ void	my_mlx_pixel_put(t_image *data, int x, int y, int color)
 }
 
 
-void	close_win(void)
-{
-	mlx_destroy_window(get()->mlx, get()->mlx_win);
-	mlx_destroy_display(get()->mlx); //segfault;
-}
 
 void	move_up(void)
 {
@@ -334,6 +357,7 @@ int	key_manager(int keycode)
 	return(0);
 }
 
+
 int main (int argc, char* argv[])
 {
 	(void)argc;
@@ -352,14 +376,10 @@ int main (int argc, char* argv[])
 	//img()->back.addr = mlx_get_data_addr(&img()->back.img,
 	//&img()->back.bits_per_pixel, &img()->back.line_length, &img()->back.endian);
 	//my_mlx_pixel_put(&img()->back, 5, 5, 0x00FF0000);
+
 	mlx_key_hook(get()->mlx_win, key_manager, get());
 	mlx_loop(get()->mlx);
 
-	// int i = 0;
-	// while(get()->map[i])
-	// {
-	// 	free(get()->map[i]);
-	// 	i++;
-	// }
+	map_free();
 	return(0);
 }
