@@ -6,7 +6,7 @@
 #    By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/15 19:53:58 by nfilipe-          #+#    #+#              #
-#    Updated: 2023/06/26 16:50:13 by gpardini         ###   ########.fr        #
+#    Updated: 2023/07/10 21:06:21 by gpardini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ LIBFT = ./libft/libft.a
 LIBFTDIR = ./libft
 MINILIBX_PATH	=	./minilibx
 MINILIBX		=	$(MINILIBX_PATH)/libmlx.a
-SRC = so_long.c
+SRC = *.c 
 
 OBJ = $(SRC:%.c=%.o)
 
@@ -47,4 +47,3 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
-
