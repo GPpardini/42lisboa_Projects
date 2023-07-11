@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 20:41:48 by gpardini          #+#    #+#             */
-/*   Updated: 2023/07/11 13:47:06 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/07/11 14:16:33 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,9 @@ void	map_print(void)
 	int	j;
 
 	i = 0;
+	put_nbr(get()->moves);
+	get()->moves++;
+	write(1, "\n", 1);
 	while (i < get()->map_y)
 	{
 		j = 0;

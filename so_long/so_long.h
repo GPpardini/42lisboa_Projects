@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 17:11:24 by gpardini          #+#    #+#             */
-/*   Updated: 2023/07/11 13:54:46 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/07/11 14:11:43 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_data
 {
 	char** map;
 	char *line;
+	int		moves;
 	int		map_y;
 	int		map_x;
 	int		map_p;
@@ -81,8 +82,8 @@ void	move_down(void);
 void	move_left(void);
 void	move_right(void);
 void	image_create(void);
-void	image_destroy(void);
 int		str_len(char* str);
+void	put_nbr(int n);
 void	close_win(void);
 char	*get_next_line(int fd);
 

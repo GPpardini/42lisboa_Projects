@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 20:46:31 by gpardini          #+#    #+#             */
-/*   Updated: 2023/07/11 14:00:22 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/07/11 14:15:27 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,6 @@ void	image_create(void)
 	img()->collectable.img = mlx_xpm_file_to_image(get()->mlx, "images/collectable.xpm", &img()->back.width, &img()->back.height);
 	img()->player.img = mlx_xpm_file_to_image(get()->mlx, "images/player.xpm", &img()->back.width, &img()->back.height);
 	img()->exit.img = mlx_xpm_file_to_image(get()->mlx, "images/exit.xpm", &img()->back.width, &img()->back.height);
-}
-
-void	image_destroy(void)
-{
-	mlx_destroy_image(get()->mlx, img()->back.img);
-	mlx_destroy_image(get()->mlx, img()->wall.img);
-	mlx_destroy_image(get()->mlx, img()->collectable.img);
-	mlx_destroy_image(get()->mlx, img()->player.img);
-	mlx_destroy_image(get()->mlx, img()->exit.img);
 }
 
 int	str_len(char* str)
@@ -44,10 +35,27 @@ int	str_len(char* str)
 	return(i);
 }
 
+void	put_nbr(int n)
+{
+	char *num = "0123456789";
+
+	if (n > 9)
+	{
+		put_nbr(n / 10);
+		put_nbr(n % 10);
+	}
+	if (n < 10)
+		write(1, &num[n % 10], 1);
+}
+
 void	close_win(void)
 {
 	map_free();
-	image_destroy();
+	mlx_destroy_image(get()->mlx, img()->back.img);
+	mlx_destroy_image(get()->mlx, img()->wall.img);
+	mlx_destroy_image(get()->mlx, img()->collectable.img);
+	mlx_destroy_image(get()->mlx, img()->player.img);
+	mlx_destroy_image(get()->mlx, img()->exit.img);
 	mlx_destroy_window(get()->mlx, get()->mlx_win);
 	mlx_destroy_display(get()->mlx);
 	mlx_loop_end(get()->mlx);
