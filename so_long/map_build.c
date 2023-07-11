@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 20:41:48 by gpardini          #+#    #+#             */
-/*   Updated: 2023/07/11 14:16:33 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/07/11 18:04:27 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	map_size_x(int fd)
 	str = NULL;
 	len = 0;
 	i = 0;
-	while(i < get()->map_y)
+	while (i < get()->map_y)
 	{
 		str = get_next_line(fd);
 		len = str_len(str);
@@ -97,7 +97,7 @@ void	map_print(void)
 		while (j < get()->map_x)
 		{
 			if (get()->map[i][j] == 'P')
-				mlx_put_image_to_window(get()->mlx,get()->mlx_win, img()->player.img, j * 32, i * 32);
+				mlx_put_image_to_window(get()->mlx, get()->mlx_win, img()->player.img, j * 32, i * 32);
 			else if (get()->map[i][j] == 'e')
 				mlx_put_image_to_window(get()->mlx, get()->mlx_win, img()->exit.img, j * 32, i * 32);
 			else if (get()->map[i][j] == 'c')
@@ -111,3 +111,5 @@ void	map_print(void)
 		i++;
 	}
 }
+
+/* ************************************************************************** */

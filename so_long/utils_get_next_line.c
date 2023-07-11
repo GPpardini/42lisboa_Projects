@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 11:05:30 by gpardini          #+#    #+#             */
-/*   Updated: 2023/07/11 13:20:37 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/07/11 17:37:13 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ char	*seek_line(int fd, char *buffer)
 	}
 	return (bl_strjoin(line, buffer));
 }
-
 
 void	over_read(char *buffer)
 {

@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 20:46:31 by gpardini          #+#    #+#             */
-/*   Updated: 2023/07/11 14:15:27 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/07/11 18:05:30 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,35 @@
 
 void	image_create(void)
 {
-	img()->back.img = mlx_xpm_file_to_image(get()->mlx, "images/background.xpm", &img()->back.width, &img()->back.height);
-	img()->wall.img = mlx_xpm_file_to_image(get()->mlx, "images/wall.xpm", &img()->back.width, &img()->back.height);
-	img()->collectable.img = mlx_xpm_file_to_image(get()->mlx, "images/collectable.xpm", &img()->back.width, &img()->back.height);
-	img()->player.img = mlx_xpm_file_to_image(get()->mlx, "images/player.xpm", &img()->back.width, &img()->back.height);
-	img()->exit.img = mlx_xpm_file_to_image(get()->mlx, "images/exit.xpm", &img()->back.width, &img()->back.height);
+	img()->back.img = mlx_xpm_file_to_image(get()->mlx,
+	"images/background.xpm", &img()->back.width, &img()->back.height);
+	img()->wall.img = mlx_xpm_file_to_image(get()->mlx,
+	"images/wall.xpm", &img()->back.width, &img()->back.height);
+	img()->collectable.img = mlx_xpm_file_to_image(get()->mlx,
+	"images/collectable.xpm", &img()->back.width, &img()->back.height);
+	img()->player.img = mlx_xpm_file_to_image(get()->mlx,
+	"images/player.xpm", &img()->back.width, &img()->back.height);
+	img()->exit.img = mlx_xpm_file_to_image(get()->mlx,
+	"images/exit.xpm", &img()->back.width, &img()->back.height);
 }
 
-int	str_len(char* str)
+int	str_len(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 	{
 		if (str[i] == '\0')
 			break ;
 		i++;
 	}
-	return(i);
+	return (i);
 }
 
 void	put_nbr(int n)
 {
-	char *num = "0123456789";
+	char	num[] = "0123456789";
 
 	if (n > 9)
 	{

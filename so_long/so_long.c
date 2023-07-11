@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 17:11:16 by gpardini          #+#    #+#             */
-/*   Updated: 2023/07/11 13:05:58 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/07/11 18:03:32 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,22 +39,22 @@ int	key_manager(int keycode)
 	return(0);
 }
 
-int main (int argc, char* argv[])
+int	main(int argc, char* argv[])
 {
 	(void)argc;
 	map_size_y(open(argv[1], O_RDONLY));
 	map_size_x(open(argv[1], O_RDONLY));
 	map_start(open(argv[1], O_RDONLY));
 	map_check();
-
 	get()->mlx = mlx_init();
-	get()->mlx_win = mlx_new_window(get()->mlx, get()->map_x * 32, get()->map_y * 32, "MyGame");
+	get()->mlx_win = mlx_new_window(get()->mlx, get()->map_x * 32, get()->map_y * 32, "Game");
 	image_create();
 	map_print();
-
 	mlx_key_hook(get()->mlx_win, key_manager, get());
 	mlx_hook(get()->mlx_win, 17,1l<<17, (void *)close_win, get());
 	mlx_loop(get()->mlx);
 	map_free();
-	return(0);
+	return (0);
 }
+
+/* ************************************************************************** */

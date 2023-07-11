@@ -6,20 +6,26 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 17:11:24 by gpardini          #+#    #+#             */
-/*   Updated: 2023/07/11 14:11:43 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/07/11 17:58:31 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-#include "./minilibx/mlx.h"
-#include <stdio.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <stdlib.h>
+# include "./minilibx/mlx.h"
+# include <stdio.h>
+# include <unistd.h>
+# include <fcntl.h>
+# include <stdlib.h>
 
-typedef struct	s_image
+typedef struct s_point
+{
+	int	x;
+	int	y;
+}	t_point;
+
+typedef struct s_image
 {
 	void	*img;
 	char	*addr;
@@ -30,12 +36,6 @@ typedef struct	s_image
 	int		height;
 }	t_image;
 
-typedef struct s_point
-{
-	int x;
-	int y;
-}	t_point;
-
 typedef struct s_album
 {
 	t_image	back;
@@ -43,12 +43,12 @@ typedef struct s_album
 	t_image	player;
 	t_image	exit;
 	t_image	collectable;
-} t_album;
+}	t_album;
 
 typedef struct s_data
 {
-	char** map;
-	char *line;
+	char	**map;
+	char	*line;
 	int		moves;
 	int		map_y;
 	int		map_x;
@@ -82,7 +82,7 @@ void	move_down(void);
 void	move_left(void);
 void	move_right(void);
 void	image_create(void);
-int		str_len(char* str);
+int		str_len(char *str);
 void	put_nbr(int n);
 void	close_win(void);
 char	*get_next_line(int fd);
