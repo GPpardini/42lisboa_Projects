@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 20:46:31 by gpardini          #+#    #+#             */
-/*   Updated: 2023/07/11 18:31:13 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/07/11 19:37:48 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,11 @@
 
 void	image_create(void)
 {
-	img()->back.img = mlx_xpm_file_to_image(get()->mlx,
-	"images/background.xpm", &img()->back.width, &img()->back.height);
-	img()->wall.img = mlx_xpm_file_to_image(get()->mlx,
-	"images/wall.xpm", &img()->back.width, &img()->back.height);
-	img()->coll.img = mlx_xpm_file_to_image(get()->mlx,
-	"images/coll.xpm", &img()->back.width, &img()->back.height);
-	img()->player.img = mlx_xpm_file_to_image(get()->mlx,
-	"images/player.xpm", &img()->back.width, &img()->back.height);
-	img()->exit.img = mlx_xpm_file_to_image(get()->mlx,
-	"images/exit.xpm", &img()->back.width, &img()->back.height);
+	img()->back.img = mlx_xpm_file_to_image(get()->mlx, "images/background.xpm", &img()->back.width, &img()->back.height);
+	img()->wall.img = mlx_xpm_file_to_image(get()->mlx, "images/wall.xpm", &img()->back.width, &img()->back.height);
+	img()->coll.img = mlx_xpm_file_to_image(get()->mlx, "images/coll.xpm", &img()->back.width, &img()->back.height);
+	img()->player.img = mlx_xpm_file_to_image(get()->mlx, "images/player.xpm", &img()->back.width, &img()->back.height);
+	img()->exit.img = mlx_xpm_file_to_image(get()->mlx, "images/exit.xpm", &img()->back.width, &img()->back.height);
 }
 
 int	str_len(char *str)

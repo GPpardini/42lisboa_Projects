@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 20:43:48 by gpardini          #+#    #+#             */
-/*   Updated: 2023/07/11 18:25:44 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/07/11 19:36:19 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,25 +36,28 @@ int	map_check_walls(char **map)
 int	map_check_pce(char **map)
 {
 	int	y;
+	int i;
 
 	y = 0;
-	get()->i = 0;
-	while (y++ < get()->map_y)
+	i = 0;
+	while (y < get()->map_y)
 	{
-		while (get()->i++ < get()->map_x)
+		while (i < get()->map_x)
 		{
-			if (map[y][get()->i] == 'P')
+			if (map[y][i] == 'P')
 			{
 				get()->map_p++;
 				get()->player.y = y;
-				get()->player.x = get()->i;
+				get()->player.x = i;
 			}
-			if (map[y][get()->i] == 'C')
+			if (map[y][i] == 'C')
 				get()->map_c++;
-			if (map[y][get()->i] == 'E')
+			if (map[y][i] == 'E')
 				get()->map_e++;
+			i++;
 		}
-		get()->i = 0;
+		y++;
+		i = 0;
 	}
 	if ((get()->map_p != 1) || (get()-> map_e != 1) || get()->map_c == 0)
 		return (0);
