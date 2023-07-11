@@ -1,5 +1,5 @@
 /* XPM */
-static char * collectable_xpm[] = {
+static char * coll_xpm[] = {
 "32 32 88 1",
 " 	c #000000",
 ".	c #040404",

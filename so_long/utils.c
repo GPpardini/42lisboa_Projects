@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 20:46:31 by gpardini          #+#    #+#             */
-/*   Updated: 2023/07/11 18:05:30 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/07/11 18:19:28 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	image_create(void)
 	"images/background.xpm", &img()->back.width, &img()->back.height);
 	img()->wall.img = mlx_xpm_file_to_image(get()->mlx,
 	"images/wall.xpm", &img()->back.width, &img()->back.height);
-	img()->collectable.img = mlx_xpm_file_to_image(get()->mlx,
-	"images/collectable.xpm", &img()->back.width, &img()->back.height);
+	img()->coll.img = mlx_xpm_file_to_image(get()->mlx,
+	"images/coll.xpm", &img()->back.width, &img()->back.height);
 	img()->player.img = mlx_xpm_file_to_image(get()->mlx,
 	"images/player.xpm", &img()->back.width, &img()->back.height);
 	img()->exit.img = mlx_xpm_file_to_image(get()->mlx,
@@ -58,7 +58,7 @@ void	close_win(void)
 	map_free();
 	mlx_destroy_image(get()->mlx, img()->back.img);
 	mlx_destroy_image(get()->mlx, img()->wall.img);
-	mlx_destroy_image(get()->mlx, img()->collectable.img);
+	mlx_destroy_image(get()->mlx, img()->coll.img);
 	mlx_destroy_image(get()->mlx, img()->player.img);
 	mlx_destroy_image(get()->mlx, img()->exit.img);
 	mlx_destroy_window(get()->mlx, get()->mlx_win);

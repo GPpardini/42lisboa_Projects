@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 17:11:24 by gpardini          #+#    #+#             */
-/*   Updated: 2023/07/11 17:58:31 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/07/11 18:18:47 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,14 @@ typedef struct s_album
 	t_image	wall;
 	t_image	player;
 	t_image	exit;
-	t_image	collectable;
+	t_image	coll;
 }	t_album;
 
 typedef struct s_data
 {
 	char	**map;
 	char	*line;
+	int		i;
 	int		moves;
 	int		map_y;
 	int		map_x;
