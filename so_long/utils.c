@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 20:46:31 by gpardini          #+#    #+#             */
-/*   Updated: 2023/07/10 20:47:37 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/07/11 13:44:06 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,14 @@ void	image_create(void)
 int	str_len(char* str)
 {
 	int i;
+
 	i = 0;
 	while(str[i])
+	{
+		if (str[i] == '\0')
+			break ;
 		i++;
+	}
 	return(i);
 }
 
@@ -37,5 +42,19 @@ void	close_win(void)
 	mlx_destroy_display(get()->mlx);
 	mlx_loop_end(get()->mlx);
 	free(get()->mlx);
+	exit(0);
+}
+
+void	map_exit(int flag)
+{
+	if (flag == 0)
+		printf("map is not square\n");
+	if (flag == 1)
+		printf("map not surrounded by walls\n");
+	if (flag == 2)
+		printf("map does not have a PCE proportion\n");
+	if (flag == 3)
+		printf("map does not have a possible trail\n");
+	map_free();
 	exit(0);
 }

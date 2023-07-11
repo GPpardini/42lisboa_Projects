@@ -6,19 +6,18 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 17:11:24 by gpardini          #+#    #+#             */
-/*   Updated: 2023/07/10 21:07:49 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/07/11 11:13:35 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "./minilibx/mlx.h"
-# include <stdio.h>
-# include "libft/libft.h"
-# include <fcntl.h>
-# include <stdlib.h>
-# include <stdbool.h>
+#include "./minilibx/mlx.h"
+#include <stdio.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <stdlib.h>
 
 typedef struct	s_image
 {
@@ -68,6 +67,7 @@ t_album	*img(void);
 int		key_manager(int keycode);
 void	map_start(int fd);
 void	map_free(void);
+void	map_exit(int flag);
 void	map_print(void);
 void	map_size_y(int fd);
 void	map_size_x(int fd);
@@ -83,5 +83,6 @@ void	move_right(void);
 void	image_create(void);
 int		str_len(char* str);
 void	close_win(void);
+char	*get_next_line(int fd);
 
 #endif

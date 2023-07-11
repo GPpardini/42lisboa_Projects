@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 20:43:48 by gpardini          #+#    #+#             */
-/*   Updated: 2023/07/10 21:08:08 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/07/11 13:41:07 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	map_check_walls(char **map)
 {
 	int i;
+
 	i = 0;
 	while(i < get()->map_x)
 	{
@@ -88,22 +89,36 @@ void	map_flood(char **map, t_point size, t_point cur)
 	map_flood(map, size, (t_point){cur.x, cur.y + 1});
 }
 
-int	map_check_flood(char **map)
+int	map_check_square(char **map)
 {
-	map_flood(map, (t_point){get()->map_x, get()->map_y}, get()->player);
+	int	len;
+	int	i;
+	int	ln;
 
-	if (!(get()->game_c == get()->map_c && get()->game_e == 1))
-		return(0);
-	else
-		return(1);
+	i = 0;
+	len = str_len(map[i]);
+	ln = 0;
+	printf("len = %d\n", len);
+	while(map[i])
+	{
+		ln = str_len(map[i]);
+		printf("ln[%d] = %d\n", i, ln);
+		if (ln != len)
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
 void	map_check(void)
 {
+	if (!map_check_square(get()->map))
+		map_exit(0);
 	if (!map_check_walls(get()->map))
-		printf("map not surrounded by walls\n");
+		map_exit(1);
 	if (!map_check_pce(get()->map))
-		printf("map does not have a PCE proportion\n");
-	if (!map_check_flood(get()->map))
-		printf("map does not have a possible trail\n");
+		map_exit(2);
+	map_flood(get()->map, (t_point){get()->map_x, get()->map_y}, get()->player);
+	if (!(get()->game_c == get()->map_c && get()->game_e == 1))
+		map_exit(3);
 }

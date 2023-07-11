@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 20:41:48 by gpardini          #+#    #+#             */
-/*   Updated: 2023/07/10 23:34:23 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/07/11 13:47:06 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,30 +35,30 @@ void	map_size_y(int fd)
 	while (1)
 	{
 		temp = get_next_line(fd);
-		if (temp == NULL)
+		if (temp == NULL || *temp == '\n')
 			break ;
 		free (temp);
 		i++;
 	}
+	if (temp)
+		free (temp);
 	get()->map_y = i;
 }
 
 void	map_size_x(int fd)
 {
-	int		i;
-	int		len;
 	char	*str;
+	int		len;
+	int		i;
 
 	str = NULL;
-	len = 1;
+	len = 0;
 	i = 0;
-	while (i < get()->map_y)
+	while(i < get()->map_y)
 	{
 		str = get_next_line(fd);
-		if (i > 0 && (str_len(str) != len))
-			write(1, "error\n", 6);
 		len = str_len(str);
-		free(str);
+		free (str);
 		i++;
 	}
 	get()->map_x = len - 1;
@@ -77,7 +77,7 @@ void	map_start(int fd)
 		get()->map[i] = get_next_line(fd);
 		if (!get()->map[i])
 			write(1, "error\n", 6);
-		get()->map[i][get()->map_x] = 0;
+		get()->map[i][str_len(get()->map[i])] = 0;
 		i++;
 	}
 }
