@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 17:11:24 by gpardini          #+#    #+#             */
-/*   Updated: 2023/07/11 18:18:47 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/07/12 15:52:53 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,9 @@ void	image_create(void);
 int		str_len(char *str);
 void	put_nbr(int n);
 void	close_win(void);
+void	counter(void);
+void	player_pos(int y, int i);
+void	my_put_image(void *img_ptr, int j, int i);
 char	*get_next_line(int fd);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 20:41:48 by gpardini          #+#    #+#             */
-/*   Updated: 2023/07/11 19:40:15 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/07/12 15:51:39 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,39 +85,28 @@ void	map_start(int fd)
 void	map_print(void)
 {
 	int	j;
-	int i;
-	
+	int	i;
+
 	j = 0;
 	i = 0;
-	printf("map_y (%d) | map_x (%d)\n", get()->map_y, get()->map_x);
+	counter();
 	while (i < get()->map_y)
 	{
 		while (j < get()->map_x)
 		{
-			printf("j(%d) | i(%d) | %c\n", j, i, get()->map[i][j]);
 			if (get()->map[i][j] == 'P')
-				mlx_put_image_to_window(get()->mlx, get()->mlx_win, img()->player.img, j * 32, i * 32);
+				my_put_image(img()->player.img, j, i);
 			else if (get()->map[i][j] == 'e')
-				mlx_put_image_to_window(get()->mlx, get()->mlx_win, img()->exit.img, j * 32, i * 32);
+				my_put_image(img()->exit.img, j, i);
 			else if (get()->map[i][j] == 'c')
-				mlx_put_image_to_window(get()->mlx, get()->mlx_win, img()->coll.img, j * 32, i * 32);
+				my_put_image(img()->coll.img, j, i);
 			else if (get()->map[i][j] == '-')
-				mlx_put_image_to_window(get()->mlx, get()->mlx_win, img()->back.img, j * 32, i * 32);
+				my_put_image(img()->back.img, j, i);
 			else if (get()->map[i][j] == '1')
-				mlx_put_image_to_window(get()->mlx, get()->mlx_win, img()->wall.img, j * 32, i * 32);
+				my_put_image(img()->wall.img, j, i);
 			j++;
 		}
 		j = 0;
-		printf("saida do while\n");
 		i++;
 	}
 }
-
-// void	counter(void)
-// {
-// 	put_nbr(get()->moves);
-// 	get()->moves++;
-// 	write(1, "\n", 1);
-// }
-
-/* ************************************************************************** */

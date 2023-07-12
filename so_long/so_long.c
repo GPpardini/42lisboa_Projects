@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 17:11:16 by gpardini          #+#    #+#             */
-/*   Updated: 2023/07/11 19:37:09 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/07/12 16:18:44 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,9 @@ int	main(int argc, char *argv[])
 	map_size_x(open(argv[1], O_RDONLY));
 	map_start(open(argv[1], O_RDONLY));
 	map_check();
-	get()->mlx = mlx_init();
-	get()->mlx_win = mlx_new_window(get()->mlx, get()->map_x * 32, get()->map_y * 32, "so_long");
+	(get())->mlx = mlx_init();
+	(get())->mlx_win = mlx_new_window((get())->mlx, \
+	(get())->map_x * 32, (get())->map_y * 32, "so_long");
 	image_create();
 	map_print();
 	mlx_key_hook(get()->mlx_win, key_manager, get());
