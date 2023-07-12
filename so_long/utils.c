@@ -6,7 +6,7 @@
 /*   By: gpardini <gpardini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 20:46:31 by gpardini          #+#    #+#             */
-/*   Updated: 2023/07/12 16:20:55 by gpardini         ###   ########.fr       */
+/*   Updated: 2023/07/12 16:32:46 by gpardini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,13 @@ int	str_len(char *str)
 
 void	put_nbr(int n)
 {
-	char	num[11];
-
-	num = "0123456789";
 	if (n > 9)
 	{
 		put_nbr(n / 10);
 		put_nbr(n % 10);
 	}
 	if (n < 10)
-		write(1, &num[n % 10], 1);
+		put_char(n + 48);
 }
 
 void	close_win(void)
